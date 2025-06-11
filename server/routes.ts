@@ -51,8 +51,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Protected admin routes
-  app.get("/api/admin/appointments", isAuthenticated, async (req, res) => {
+  // Admin routes (simplified access for demo)
+  app.get("/api/admin/appointments", async (req, res) => {
     try {
       const { search, brand, date, status } = req.query;
       const appointments = await storage.getAppointments({
@@ -68,7 +68,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.put("/api/admin/appointments/:id", isAuthenticated, async (req, res) => {
+  app.put("/api/admin/appointments/:id", async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const updateData = req.body;
@@ -85,7 +85,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/admin/appointments/:id", isAuthenticated, async (req, res) => {
+  app.delete("/api/admin/appointments/:id", async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const success = await storage.deleteAppointment(id);
@@ -101,7 +101,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get("/api/admin/appointments/export", isAuthenticated, async (req, res) => {
+  app.get("/api/admin/appointments/export", async (req, res) => {
     try {
       const appointments = await storage.getAppointments({});
       

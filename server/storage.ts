@@ -1,27 +1,123 @@
-import { users, type User, type InsertUser } from "@shared/schema";
+import { 
+  users, 
+  appointments, 
+  type User, 
+  type UpsertUser, 
+  type Appointment, 
+  type InsertAppointment 
+} from "@shared/schema";
 import { db } from "./db";
-import { eq } from "drizzle-orm";
+import { eq, ilike, and, or } from "drizzle-orm";
 
-// keep IStorage the same
+export interface IStorage {
+  // User operations for Replit Auth
+  getUser(id: string): Promise<User | undefined>;
+  upsertUser(user: UpsertUser): Promise<User>;
+  
+  // Appointment operations
+  createAppointment(appointment: InsertAppointment): Promise<Appointment>;
+  getAppointments(filters: {
+    search?: string;
+    brand?: string;
+    date?: string;
+    status?: string;
+  }): Promise<Appointment[]>;
+  updateAppointment(id: number, data: Partial<Appointment>): Promise<Appointment | undefined>;
+  deleteAppointment(id: number): Promise<boolean>;
+  markWhatsAppSent(id: number): Promise<void>;
+}
 
-// rewrite MemStorage to DatabaseStorage
 export class DatabaseStorage implements IStorage {
-  async getUser(id: number): Promise<User | undefined> {
+  // User operations for Replit Auth
+  async getUser(id: string): Promise<User | undefined> {
     const [user] = await db.select().from(users).where(eq(users.id, id));
-    return user || undefined;
+    return user;
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.username, username));
-    return user || undefined;
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
+  async upsertUser(userData: UpsertUser): Promise<User> {
     const [user] = await db
       .insert(users)
-      .values(insertUser)
+      .values(userData)
+      .onConflictDoUpdate({
+        target: users.id,
+        set: {
+          ...userData,
+          updatedAt: new Date(),
+        },
+      })
       .returning();
     return user;
+  }
+
+  // Appointment operations
+  async createAppointment(appointment: InsertAppointment): Promise<Appointment> {
+    const [result] = await db
+      .insert(appointments)
+      .values(appointment)
+      .returning();
+    return result;
+  }
+
+  async getAppointments(filters: {
+    search?: string;
+    brand?: string;
+    date?: string;
+    status?: string;
+  }): Promise<Appointment[]> {
+    let query = db.select().from(appointments);
+    
+    const conditions = [];
+    
+    if (filters.search) {
+      conditions.push(
+        or(
+          ilike(appointments.name, `%${filters.search}%`),
+          ilike(appointments.phone, `%${filters.search}%`),
+          ilike(appointments.email, `%${filters.search}%`)
+        )
+      );
+    }
+    
+    if (filters.brand) {
+      conditions.push(eq(appointments.deviceBrand, filters.brand));
+    }
+    
+    if (filters.date) {
+      conditions.push(eq(appointments.appointmentDate, filters.date));
+    }
+    
+    if (filters.status) {
+      conditions.push(eq(appointments.status, filters.status));
+    }
+    
+    if (conditions.length > 0) {
+      query = query.where(and(...conditions));
+    }
+    
+    return await query;
+  }
+
+  async updateAppointment(id: number, data: Partial<Appointment>): Promise<Appointment | undefined> {
+    const [result] = await db
+      .update(appointments)
+      .set({ ...data, updatedAt: new Date() })
+      .where(eq(appointments.id, id))
+      .returning();
+    return result;
+  }
+
+  async deleteAppointment(id: number): Promise<boolean> {
+    const result = await db
+      .delete(appointments)
+      .where(eq(appointments.id, id));
+    return (result.rowCount || 0) > 0;
+  }
+
+  async markWhatsAppSent(id: number): Promise<void> {
+    await db
+      .update(appointments)
+      .set({ whatsappSent: new Date() })
+      .where(eq(appointments.id, id));
   }
 }
 

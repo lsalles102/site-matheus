@@ -4,9 +4,13 @@ import {
   type Appointment, 
   type InsertAppointment,
   type AdminUser,
-  type InsertAdminUser
+  type InsertAdminUser,
+  users,
+  appointments,
+  adminUsers
 } from "@shared/schema";
-import { supabase } from "./db";
+import { db } from "./db";
+import { eq, and, or, like, desc } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 
 export interface IStorage {
@@ -35,78 +39,47 @@ export interface IStorage {
 export class DatabaseStorage implements IStorage {
   // User operations for Replit Auth
   async getUser(id: string): Promise<User | undefined> {
-    const { data, error } = await supabase
-      .from('users')
-      .select('*')
-      .eq('id', id)
-      .single();
-    
-    if (error && error.code !== 'PGRST116') {
+    try {
+      const result = await db.select().from(users).where(eq(users.id, id)).limit(1);
+      return result[0] || undefined;
+    } catch (error) {
+      console.error('Error getting user:', error);
       throw error;
     }
-    
-    return data || undefined;
   }
 
   async upsertUser(userData: UpsertUser): Promise<User> {
-    const { data, error } = await supabase
-      .from('users')
-      .upsert(userData, { onConflict: 'id' })
-      .select()
-      .single();
-    
-    if (error) {
+    try {
+      const result = await db.insert(users)
+        .values(userData)
+        .onConflictDoUpdate({
+          target: users.id,
+          set: userData
+        })
+        .returning();
+      
+      return result[0];
+    } catch (error) {
+      console.error('Error upserting user:', error);
       throw error;
     }
-    
-    return data;
   }
 
   // Appointment operations
   async createAppointment(appointment: InsertAppointment): Promise<Appointment> {
-    // Map camelCase to snake_case for Supabase
-    const supabaseData = {
-      name: appointment.name,
-      phone: appointment.phone,
-      email: appointment.email,
-      appointment_date: appointment.appointmentDate,
-      appointment_time: appointment.appointmentTime,
-      device_brand: appointment.deviceBrand,
-      device_model: appointment.deviceModel,
-      service_type: appointment.serviceType,
-      service_location: appointment.serviceLocation,
-      address: appointment.address || null,
-      status: 'confirmado'
-    };
-
-    const { data, error } = await supabase
-      .from('appointments')
-      .insert(supabaseData)
-      .select()
-      .single();
-    
-    if (error) {
+    try {
+      const result = await db.insert(appointments)
+        .values({
+          ...appointment,
+          status: 'confirmado'
+        })
+        .returning();
+      
+      return result[0];
+    } catch (error) {
+      console.error('Error creating appointment:', error);
       throw error;
     }
-    
-    // Map snake_case back to camelCase
-    return {
-      id: data.id,
-      name: data.name,
-      phone: data.phone,
-      email: data.email,
-      appointmentDate: data.appointment_date,
-      appointmentTime: data.appointment_time,
-      deviceBrand: data.device_brand,
-      deviceModel: data.device_model,
-      serviceType: data.service_type,
-      serviceLocation: data.service_location,
-      address: data.address,
-      status: data.status,
-      whatsappSent: data.whatsapp_sent,
-      createdAt: data.created_at,
-      updatedAt: data.updated_at
-    };
   }
 
   async getAppointments(filters: {

@@ -50,7 +50,7 @@ export default function Landing() {
               <img 
                 src="/logo.png" 
                 alt="Global Tech Logo" 
-                className="h-16 w-auto object-contain"
+                className="h-24 w-auto object-contain"
               />
             </div>
             
@@ -87,7 +87,7 @@ export default function Landing() {
                 <img 
                   src="/logo.png" 
                   alt="Global Tech Logo" 
-                  className="h-10 w-auto object-contain"
+                  className="h-14 w-auto object-contain"
                 />
               </div>
               

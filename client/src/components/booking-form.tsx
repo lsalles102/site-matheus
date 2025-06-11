@@ -100,7 +100,7 @@ export default function BookingForm() {
 
   return (
     <>
-      <Card className="bg-white shadow-xl">
+      <Card className="bg-card shadow-xl border-border">
         <CardContent className="p-8">
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             {/* Nome e Telefone */}

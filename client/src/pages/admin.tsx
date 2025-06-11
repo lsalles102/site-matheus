@@ -117,7 +117,9 @@ export default function Admin() {
   });
 
   const handleFilterChange = (key: string, value: string) => {
-    setFilters(prev => ({ ...prev, [key]: value }));
+    // Convert "all" values to empty strings for filtering
+    const filterValue = value === "all" ? "" : value;
+    setFilters(prev => ({ ...prev, [key]: filterValue }));
   };
 
   return (
@@ -182,7 +184,7 @@ export default function Admin() {
                   <SelectValue placeholder="Todas as marcas" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Todas as marcas</SelectItem>
+                  <SelectItem value="all">Todas as marcas</SelectItem>
                   <SelectItem value="Apple">Apple</SelectItem>
                   <SelectItem value="Samsung">Samsung</SelectItem>
                   <SelectItem value="Motorola">Motorola</SelectItem>
@@ -203,7 +205,7 @@ export default function Admin() {
                   <SelectValue placeholder="Todos os status" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Todos os status</SelectItem>
+                  <SelectItem value="all">Todos os status</SelectItem>
                   <SelectItem value="confirmado">Confirmado</SelectItem>
                   <SelectItem value="cancelado">Cancelado</SelectItem>
                   <SelectItem value="concluido">Concluído</SelectItem>

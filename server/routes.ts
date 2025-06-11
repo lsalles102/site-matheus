@@ -2,8 +2,9 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { setupAuth, isAuthenticated } from "./replitAuth";
-import { insertAppointmentSchema } from "@shared/schema";
+import { insertAppointmentSchema, adminLoginSchema } from "@shared/schema";
 import { z } from "zod";
+import session from "express-session";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Auth middleware
@@ -51,8 +52,77 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Admin routes (simplified access for demo)
-  app.get("/api/admin/appointments", async (req, res) => {
+  // Admin authentication middleware
+  const requireAdminAuth = (req: any, res: any, next: any) => {
+    if (!req.session.adminId) {
+      return res.status(401).json({ message: "Acesso negado. Faça login como administrador." });
+    }
+    next();
+  };
+
+  // Admin login
+  app.post("/api/admin/login", async (req, res) => {
+    try {
+      const validatedData = adminLoginSchema.parse(req.body);
+      const admin = await storage.validateAdminLogin(validatedData.username, validatedData.password);
+      
+      if (!admin) {
+        return res.status(401).json({ message: "Credenciais inválidas" });
+      }
+
+      req.session.adminId = admin.id;
+      res.json({ 
+        success: true, 
+        message: "Login realizado com sucesso",
+        admin: { id: admin.id, username: admin.username, role: admin.role }
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ 
+          message: "Dados inválidos", 
+          errors: error.errors 
+        });
+      } else {
+        console.error("Error during admin login:", error);
+        res.status(500).json({ message: "Erro interno do servidor" });
+      }
+    }
+  });
+
+  // Admin logout
+  app.post("/api/admin/logout", (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        return res.status(500).json({ message: "Erro ao fazer logout" });
+      }
+      res.json({ success: true, message: "Logout realizado com sucesso" });
+    });
+  });
+
+  // Check admin authentication status
+  app.get("/api/admin/me", async (req: any, res) => {
+    if (!req.session.adminId) {
+      return res.status(401).json({ message: "Não autenticado" });
+    }
+
+    try {
+      const admin = await storage.getAdminUser(req.session.adminId);
+      if (!admin) {
+        req.session.destroy(() => {});
+        return res.status(401).json({ message: "Usuário admin não encontrado" });
+      }
+
+      res.json({ 
+        admin: { id: admin.id, username: admin.username, role: admin.role }
+      });
+    } catch (error) {
+      console.error("Error fetching admin user:", error);
+      res.status(500).json({ message: "Erro interno do servidor" });
+    }
+  });
+
+  // Admin routes (protected)
+  app.get("/api/admin/appointments", requireAdminAuth, async (req, res) => {
     try {
       const { search, brand, date, status } = req.query;
       const appointments = await storage.getAppointments({
@@ -68,7 +138,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.put("/api/admin/appointments/:id", async (req, res) => {
+  app.put("/api/admin/appointments/:id", requireAdminAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const updateData = req.body;
@@ -85,7 +155,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.delete("/api/admin/appointments/:id", async (req, res) => {
+  app.delete("/api/admin/appointments/:id", requireAdminAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const success = await storage.deleteAppointment(id);
@@ -101,7 +171,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.get("/api/admin/appointments/export", async (req, res) => {
+  app.get("/api/admin/appointments/export", requireAdminAuth, async (req, res) => {
     try {
       const appointments = await storage.getAppointments({});
       

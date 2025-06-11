@@ -103,7 +103,8 @@ export class DatabaseStorage implements IStorage {
       query = query.where(and(...conditions));
     }
     
-    return await query.orderBy(appointments.createdAt);
+    const results = await query.orderBy(desc(appointments.createdAt));
+    return results;
   }
 
   async updateAppointment(id: number, data: Partial<Appointment>): Promise<Appointment | undefined> {

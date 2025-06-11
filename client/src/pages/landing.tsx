@@ -29,13 +29,13 @@ export default function Landing() {
     <div className="min-h-screen bg-background nano-pattern">
       {/* Header */}
       <header className="bg-card/90 backdrop-blur-md shadow-lg border-b border-primary/20 sticky top-0 z-40 fade-in">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-2">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <img
                 src="/logo.png"
                 alt="Logo"
-                className="h-20 w-auto object-contain"
+                className="h-24 w-auto object-contain"
               />
             </div>
 
@@ -76,7 +76,7 @@ export default function Landing() {
                 <img
                   src="/logo.png"
                   alt="Logo"
-                  className="h-16 w-auto object-contain"
+                  className="h-20 w-auto object-contain"
                 />
               </div>
 

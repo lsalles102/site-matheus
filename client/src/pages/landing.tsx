@@ -35,7 +35,7 @@ export default function Landing() {
               <img
                 src="/logo.png"
                 alt="Logo"
-                className="h-24 w-auto object-contain"
+                className="h-32 w-auto object-contain -my-6"
               />
             </div>
 
@@ -76,7 +76,7 @@ export default function Landing() {
                 <img
                   src="/logo.png"
                   alt="Logo"
-                  className="h-20 w-auto object-contain"
+                  className="h-28 w-auto object-contain -my-4"
                 />
               </div>
 

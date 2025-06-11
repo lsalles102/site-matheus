@@ -231,27 +231,27 @@ export default function Landing() {
       {/* Contact Information Section */}
       <section
         id="contato"
-        className="py-24 bg-gradient-to-b from-background to-card"
+        className="py-16 md:py-24 bg-gradient-to-b from-background to-card"
       >
         <div className="container mx-auto px-4">
-          <div className="text-center mb-20 fade-in">
-            <h3 className="text-4xl md:text-5xl font-black text-white-pure mb-6 tracking-tight">
+          <div className="text-center mb-12 md:mb-20 fade-in">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-white-pure mb-4 md:mb-6 tracking-tight">
               Nossa Localização
             </h3>
-            <p className="text-xl text-gray-light leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-light leading-relaxed px-4">
               Venha nos visitar ou entre em contato conosco
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto px-4">
             {/* Contact Information */}
-            <div className="space-y-8 slide-up">
-              <div className="bg-card/80 backdrop-blur-md p-8 rounded-2xl border-2 border-primary/30 shadow-lg hover:shadow-cyan/20 transition-all duration-300">
-                <h4 className="text-2xl font-bold text-white-pure mb-6 flex items-center">
-                  <MapPin className="mr-4 text-cyan w-6 h-6" />
+            <div className="space-y-6 md:space-y-8 slide-up">
+              <div className="bg-card/80 backdrop-blur-md p-6 md:p-8 rounded-2xl border-2 border-primary/30 shadow-lg hover:shadow-cyan/20 transition-all duration-300">
+                <h4 className="text-xl md:text-2xl font-bold text-white-pure mb-4 md:mb-6 flex items-center">
+                  <MapPin className="mr-3 md:mr-4 text-cyan w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
                   Endereço
                 </h4>
-                <p className="text-gray-light text-xl leading-relaxed">
+                <p className="text-gray-light text-lg md:text-xl leading-relaxed">
                   R. Ten. Calixto, 100 Ouro Minas Center
                   <br />
                   Turu, São Luís - MA
@@ -260,20 +260,20 @@ export default function Landing() {
                 </p>
               </div>
 
-              <div className="bg-card/80 backdrop-blur-md p-8 rounded-2xl border-2 border-primary/30 shadow-lg hover:shadow-cyan/20 transition-all duration-300">
-                <h4 className="text-2xl font-bold text-white-pure mb-6 flex items-center">
-                  <Phone className="mr-4 text-cyan w-6 h-6" />
+              <div className="bg-card/80 backdrop-blur-md p-6 md:p-8 rounded-2xl border-2 border-primary/30 shadow-lg hover:shadow-cyan/20 transition-all duration-300">
+                <h4 className="text-xl md:text-2xl font-bold text-white-pure mb-4 md:mb-6 flex items-center">
+                  <Phone className="mr-3 md:mr-4 text-cyan w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
                   Telefone & WhatsApp
                 </h4>
-                <p className="text-gray-light text-xl">(98) 99181-9204</p>
+                <p className="text-gray-light text-lg md:text-xl">(98) 99181-9204</p>
               </div>
 
-              <div className="bg-card/80 backdrop-blur-md p-8 rounded-2xl border-2 border-primary/30 shadow-lg hover:shadow-cyan/20 transition-all duration-300">
-                <h4 className="text-2xl font-bold text-white-pure mb-6 flex items-center">
-                  <Clock className="mr-4 text-cyan w-6 h-6" />
+              <div className="bg-card/80 backdrop-blur-md p-6 md:p-8 rounded-2xl border-2 border-primary/30 shadow-lg hover:shadow-cyan/20 transition-all duration-300">
+                <h4 className="text-xl md:text-2xl font-bold text-white-pure mb-4 md:mb-6 flex items-center">
+                  <Clock className="mr-3 md:mr-4 text-cyan w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
                   Horário de Funcionamento
                 </h4>
-                <div className="text-gray-light space-y-3 text-lg">
+                <div className="text-gray-light space-y-2 md:space-y-3 text-base md:text-lg">
                   <p>
                     <strong className="text-white-pure">
                       Segunda a Sexta:
@@ -334,9 +334,9 @@ export default function Landing() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-t from-dark-blue to-card text-white-pure py-20 border-t border-cyan/30">
+      <footer className="bg-gradient-to-t from-dark-blue to-card text-white-pure py-12 md:py-20 border-t border-cyan/30">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-10">
+          <div className="grid md:grid-cols-4 gap-8 md:gap-10">
             <div className="fade-in">
               <div className="flex items-center space-x-4 mb-8">
                 <div className="w-12 h-12 bg-gradient-to-br from-cyan to-primary rounded-xl flex items-center justify-center glow">
@@ -351,7 +351,7 @@ export default function Landing() {
               </div>
               <p className="text-gray-light text-lg leading-relaxed">
                 Protegendo seus dispositivos com a mais avançada tecnologia de
-                carbono e titânio .
+                carbono e titânio.
               </p>
             </div>
 
@@ -370,7 +370,7 @@ export default function Landing() {
                   Durabilidade 12 meses
                 </li>
                 <li className="hover:text-cyan transition-colors">
-                  Aplicação invisivel
+                  Aplicação invisível
                 </li>
               </ul>
             </div>

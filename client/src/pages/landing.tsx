@@ -70,6 +70,13 @@ export default function Landing() {
                 Contato
               </a>
             </nav>
+            
+            {/* Mobile Menu Button */}
+            <button className="md:hidden p-2 text-gray-light hover:text-cyan transition-colors">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
           </div>
         </div>
       </header>
@@ -82,31 +89,33 @@ export default function Landing() {
         <div className="absolute inset-0 bg-gradient-to-r from-dark-blue/90 to-transparent"></div>
         <div className="relative container mx-auto px-4">
           <div className="max-w-5xl mx-auto text-center slide-up">
-            <h2 className="text-5xl md:text-7xl font-black mb-8 leading-tight tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 md:mb-8 leading-tight tracking-tight">
               Proteja seu celular com{" "}
               <span className="text-cyan glow">
                 tecnologia de blindagem líquida
               </span>
             </h2>
-            <p className="text-xl md:text-2xl mb-12 text-gray-light leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl mb-8 md:mb-12 text-gray-light leading-relaxed max-w-3xl mx-auto px-4">
               Blindagem líquida com carbono e titânio que aumenta a resistência
               da tela em 15x contra riscos e impactos
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-cyan to-primary hover:from-primary hover:to-cyan text-dark-blue px-10 py-5 text-xl font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 glow float"
+                className="bg-gradient-to-r from-cyan to-primary hover:from-primary hover:to-cyan text-dark-blue px-8 sm:px-10 py-4 sm:py-5 text-lg sm:text-xl font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 glow float w-full sm:w-auto"
                 onClick={scrollToBooking}
               >
-                <Calendar className="mr-3 h-6 w-6" />
+                <Calendar className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" />
                 Agendar Agora
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                className="border-2 border-cyan text-cyan hover:bg-cyan hover:text-dark-blue px-10 py-5 text-xl font-bold transition-all duration-300"
+                className="border-2 border-cyan text-cyan hover:bg-cyan hover:text-dark-blue px-8 sm:px-10 py-4 sm:py-5 text-lg sm:text-xl font-bold transition-all duration-300 w-full sm:w-auto"
+                onClick={() => window.open("https://wa.me/5598991819204", "_blank")}
               >
-                Ver Como Funciona
+                <Phone className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" />
+                WhatsApp
               </Button>
             </div>
           </div>
@@ -114,43 +123,43 @@ export default function Landing() {
       </section>
 
       {/* Services Section */}
-      <section id="servicos" className="py-24 bg-card/50 backdrop-blur-sm">
+      <section id="servicos" className="py-16 md:py-24 bg-card/50 backdrop-blur-sm">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-20 fade-in">
-            <h3 className="text-4xl md:text-5xl font-black text-white-pure mb-6 tracking-tight">
+          <div className="text-center mb-12 md:mb-20 fade-in">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-white-pure mb-4 md:mb-6 tracking-tight">
               Nossos Serviços de Blindagem
             </h3>
-            <p className="text-xl text-gray-light max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-light max-w-3xl mx-auto leading-relaxed px-4">
               Tecnologia de ponta em nanotecnologia para proteger seu
               investimento
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10 max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10 max-w-7xl mx-auto px-4">
             {/* Blindagem Básica */}
             <Card className="bg-card/80 backdrop-blur-md hover:shadow-2xl hover:shadow-cyan/20 transition-all duration-500 border-2 border-primary/30 hover:border-cyan slide-up transform hover:scale-105">
-              <CardContent className="p-10">
+              <CardContent className="p-6 md:p-8 lg:p-10">
                 <div className="w-20 h-20 bg-gradient-to-br from-primary/30 to-cyan/30 rounded-2xl flex items-center justify-center mb-8 glow">
                   <Shield className="text-cyan w-10 h-10" />
                 </div>
-                <h4 className="text-3xl font-bold text-white-pure mb-6">
+                <h4 className="text-2xl md:text-3xl font-bold text-white-pure mb-4 md:mb-6">
                   Blindagem Básica
                 </h4>
-                <ul className="space-y-4 text-gray-light mb-8">
-                  <li className="flex items-center text-lg">
-                    <Check className="text-cyan mr-4 w-6 h-6" />
+                <ul className="space-y-3 md:space-y-4 text-gray-light mb-6 md:mb-8">
+                  <li className="flex items-center text-base md:text-lg">
+                    <Check className="text-cyan mr-3 md:mr-4 w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
                     Proteção contra riscos e impactos
                   </li>
-                  <li className="flex items-center text-lg">
-                    <Check className="text-cyan mr-4 w-6 h-6" />
+                  <li className="flex items-center text-base md:text-lg">
+                    <Check className="text-cyan mr-3 md:mr-4 w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
                     Aplicação invisível
                   </li>
-                  <li className="flex items-center text-lg">
-                    <Check className="text-cyan mr-4 w-6 h-6" />
+                  <li className="flex items-center text-base md:text-lg">
+                    <Check className="text-cyan mr-3 md:mr-4 w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
                     Durabilidade de 12 meses
                   </li>
-                  <li className="flex items-center text-lg">
-                    <Check className="text-cyan mr-4 w-6 h-6" />
+                  <li className="flex items-center text-base md:text-lg">
+                    <Check className="text-cyan mr-3 md:mr-4 w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
                     Aplicação apenas no vidro frontal
                   </li>
                 </ul>
@@ -159,32 +168,32 @@ export default function Landing() {
 
             {/* Blindagem Premium */}
             <Card className="bg-gradient-to-br from-cyan/20 to-primary/20 backdrop-blur-md hover:shadow-2xl hover:shadow-cyan/30 transition-all duration-500 relative border-2 border-cyan glow slide-up transform hover:scale-105">
-              <div className="absolute top-6 right-6 bg-gradient-to-r from-cyan to-primary text-dark-blue px-4 py-2 rounded-full text-sm font-bold">
+              <div className="absolute top-4 md:top-6 right-4 md:right-6 bg-gradient-to-r from-cyan to-primary text-dark-blue px-3 md:px-4 py-1 md:py-2 rounded-full text-xs md:text-sm font-bold">
                 Recomendado
               </div>
-              <CardContent className="p-10">
-                <div className="w-20 h-20 bg-gradient-to-br from-cyan/30 to-primary/30 rounded-2xl flex items-center justify-center mb-8 glow">
-                  <Crown className="text-cyan w-10 h-10" />
+              <CardContent className="p-6 md:p-8 lg:p-10">
+                <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-cyan/30 to-primary/30 rounded-2xl flex items-center justify-center mb-6 md:mb-8 glow">
+                  <Crown className="text-cyan w-8 h-8 md:w-10 md:h-10" />
                 </div>
-                <h4 className="text-3xl font-bold text-white-pure mb-6">
+                <h4 className="text-2xl md:text-3xl font-bold text-white-pure mb-4 md:mb-6">
                   Blindagem Premium
                 </h4>
-                <ul className="space-y-4 text-gray-light mb-8">
-                  <li className="flex items-center text-lg">
-                    <Check className="text-cyan mr-4 w-6 h-6" />
+                <ul className="space-y-3 md:space-y-4 text-gray-light mb-6 md:mb-8">
+                  <li className="flex items-center text-base md:text-lg">
+                    <Check className="text-cyan mr-3 md:mr-4 w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
                     Proteção contra riscos e impactos
                   </li>
-                  <li className="flex items-center text-lg">
-                    <Check className="text-cyan mr-4 w-6 h-6" />
+                  <li className="flex items-center text-base md:text-lg">
+                    <Check className="text-cyan mr-3 md:mr-4 w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
                     Aplicação invisível
                   </li>
-                  <li className="flex items-center text-lg">
-                    <Check className="text-cyan mr-4 w-6 h-6" />
+                  <li className="flex items-center text-base md:text-lg">
+                    <Check className="text-cyan mr-3 md:mr-4 w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
                     Durabilidade de 12 meses
                   </li>
-                  <li className="flex items-center text-lg">
-                    <Check className="text-cyan mr-4 w-6 h-6" />
-                    Aplicação vidro frontal, traseiro e câmeras{" "}
+                  <li className="flex items-center text-base md:text-lg">
+                    <Check className="text-cyan mr-3 md:mr-4 w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
+                    Aplicação vidro frontal, traseiro e câmeras
                   </li>
                 </ul>
               </CardContent>
@@ -192,24 +201,24 @@ export default function Landing() {
 
             {/* Novo Card - Vantagens Técnicas */}
             <Card className="bg-card/80 backdrop-blur-md hover:shadow-2xl hover:shadow-cyan/20 transition-all duration-500 border-2 border-primary/30 hover:border-cyan slide-up transform hover:scale-105">
-              <CardContent className="p-10">
-                <div className="w-20 h-20 bg-gradient-to-br from-primary/30 to-cyan/30 rounded-2xl flex items-center justify-center mb-8 glow">
-                  <Check className="text-cyan w-10 h-10" />
+              <CardContent className="p-6 md:p-8 lg:p-10">
+                <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-primary/30 to-cyan/30 rounded-2xl flex items-center justify-center mb-6 md:mb-8 glow">
+                  <Check className="text-cyan w-8 h-8 md:w-10 md:h-10" />
                 </div>
-                <h4 className="text-3xl font-bold text-white-pure mb-6">
+                <h4 className="text-2xl md:text-3xl font-bold text-white-pure mb-4 md:mb-6">
                   Vantagens Técnicas
                 </h4>
-                <ul className="space-y-4 text-gray-light mb-8">
-                  <li className="flex items-center text-lg">
-                    <Check className="text-cyan mr-4 w-6 h-6" />
+                <ul className="space-y-3 md:space-y-4 text-gray-light mb-6 md:mb-8">
+                  <li className="flex items-center text-base md:text-lg">
+                    <Check className="text-cyan mr-3 md:mr-4 w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
                     Não altera a originalidade do aparelho
                   </li>
-                  <li className="flex items-center text-lg">
-                    <Check className="text-cyan mr-4 w-6 h-6" />
+                  <li className="flex items-center text-base md:text-lg">
+                    <Check className="text-cyan mr-3 md:mr-4 w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
                     Não altera a qualidade das câmeras
                   </li>
-                  <li className="flex items-center text-lg">
-                    <Check className="text-cyan mr-4 w-6 h-6" />
+                  <li className="flex items-center text-base md:text-lg">
+                    <Check className="text-cyan mr-3 md:mr-4 w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
                     Não perde a garantia do fabricante
                   </li>
                 </ul>
@@ -304,15 +313,15 @@ export default function Landing() {
       {/* Booking Section */}
       <section
         id="agendamento"
-        className="py-24 bg-gradient-to-b from-card to-background nano-pattern"
+        className="py-16 md:py-24 bg-gradient-to-b from-card to-background nano-pattern"
       >
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-16 fade-in">
-              <h3 className="text-4xl md:text-5xl font-black text-white-pure mb-6 tracking-tight">
+            <div className="text-center mb-12 md:mb-16 fade-in">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-white-pure mb-4 md:mb-6 tracking-tight">
                 Agende Seu Atendimento
               </h3>
-              <p className="text-xl text-gray-light leading-relaxed">
+              <p className="text-lg sm:text-xl text-gray-light leading-relaxed px-4">
                 Preencha o formulário e receba confirmação via WhatsApp
               </p>
             </div>

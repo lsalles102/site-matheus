@@ -99,6 +99,30 @@
   animation: float 3s ease-in-out infinite;
 }
 
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Improve touch targets for mobile */
+  button, .cursor-pointer {
+    min-height: 44px;
+  }
+  
+  /* Better spacing for mobile cards */
+  .card-mobile {
+    margin-bottom: 1rem;
+  }
+  
+  /* Optimize text sizes for mobile readability */
+  .text-responsive {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+}
+
 .glow {
   box-shadow: 0 0 20px rgba(0, 180, 216, 0.3);
 }

@@ -44,6 +44,16 @@ export default function Landing() {
                 </p>
               </div>
             </div>
+            
+            {/* Logo Central */}
+            <div className="hidden md:flex items-center justify-center flex-1 mx-8">
+              <img 
+                src="/logo.png" 
+                alt="Global Tech Logo" 
+                className="h-16 w-auto object-contain"
+              />
+            </div>
+            
             <nav className="hidden md:flex space-x-8">
               <a
                 href="#home"
@@ -71,12 +81,23 @@ export default function Landing() {
               </a>
             </nav>
             
-            {/* Mobile Menu Button */}
-            <button className="md:hidden p-2 text-gray-light hover:text-cyan transition-colors">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
+            <div className="flex items-center space-x-4">
+              {/* Logo Mobile */}
+              <div className="md:hidden">
+                <img 
+                  src="/logo.png" 
+                  alt="Global Tech Logo" 
+                  className="h-10 w-auto object-contain"
+                />
+              </div>
+              
+              {/* Mobile Menu Button */}
+              <button className="md:hidden p-2 text-gray-light hover:text-cyan transition-colors">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </header>

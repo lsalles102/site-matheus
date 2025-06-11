@@ -88,177 +88,141 @@ export class DatabaseStorage implements IStorage {
     date?: string;
     status?: string;
   }): Promise<Appointment[]> {
-    let query = supabase
-      .from('appointments')
-      .select('*');
+    try {
+      let whereConditions = [];
 
-    // Apply filters
-    if (filters.search) {
-      query = query.or(`name.ilike.%${filters.search}%,phone.ilike.%${filters.search}%,email.ilike.%${filters.search}%`);
-    }
+      // Apply filters
+      if (filters.search) {
+        const searchTerm = `%${filters.search}%`;
+        whereConditions.push(
+          or(
+            like(appointments.name, searchTerm),
+            like(appointments.phone, searchTerm),
+            like(appointments.email, searchTerm)
+          )
+        );
+      }
 
-    if (filters.brand) {
-      query = query.eq('device_brand', filters.brand);
-    }
+      if (filters.brand) {
+        whereConditions.push(eq(appointments.deviceBrand, filters.brand));
+      }
 
-    if (filters.date) {
-      query = query.eq('appointment_date', filters.date);
-    }
+      if (filters.date) {
+        whereConditions.push(eq(appointments.appointmentDate, filters.date));
+      }
 
-    if (filters.status) {
-      query = query.eq('status', filters.status);
-    }
+      if (filters.status) {
+        whereConditions.push(eq(appointments.status, filters.status));
+      }
 
-    query = query.order('created_at', { ascending: false });
+      const whereClause = whereConditions.length > 0 ? and(...whereConditions) : undefined;
 
-    const { data, error } = await query;
-    
-    if (error) {
+      const result = await db
+        .select()
+        .from(appointments)
+        .where(whereClause)
+        .orderBy(desc(appointments.createdAt));
+
+      return result;
+    } catch (error) {
+      console.error('Error getting appointments:', error);
       throw error;
     }
-    
-    // Map snake_case back to camelCase for all appointments
-    return (data || []).map((item: any) => ({
-      id: item.id,
-      name: item.name,
-      phone: item.phone,
-      email: item.email,
-      appointmentDate: item.appointment_date,
-      appointmentTime: item.appointment_time,
-      deviceBrand: item.device_brand,
-      deviceModel: item.device_model,
-      serviceType: item.service_type,
-      serviceLocation: item.service_location,
-      address: item.address,
-      status: item.status,
-      whatsappSent: item.whatsapp_sent,
-      createdAt: item.created_at,
-      updatedAt: item.updated_at
-    }));
   }
 
   async updateAppointment(id: number, data: Partial<Appointment>): Promise<Appointment | undefined> {
-    // Map camelCase to snake_case for update
-    const updateData: any = {};
-    
-    if (data.name !== undefined) updateData.name = data.name;
-    if (data.phone !== undefined) updateData.phone = data.phone;
-    if (data.email !== undefined) updateData.email = data.email;
-    if (data.appointmentDate !== undefined) updateData.appointment_date = data.appointmentDate;
-    if (data.appointmentTime !== undefined) updateData.appointment_time = data.appointmentTime;
-    if (data.deviceBrand !== undefined) updateData.device_brand = data.deviceBrand;
-    if (data.deviceModel !== undefined) updateData.device_model = data.deviceModel;
-    if (data.serviceType !== undefined) updateData.service_type = data.serviceType;
-    if (data.serviceLocation !== undefined) updateData.service_location = data.serviceLocation;
-    if (data.address !== undefined) updateData.address = data.address;
-    if (data.status !== undefined) updateData.status = data.status;
-    
-    updateData.updated_at = new Date().toISOString();
-
-    const { data: result, error } = await supabase
-      .from('appointments')
-      .update(updateData)
-      .eq('id', id)
-      .select()
-      .single();
-    
-    if (error) {
+    try {
+      const result = await db
+        .update(appointments)
+        .set({
+          ...data,
+          updatedAt: new Date()
+        })
+        .where(eq(appointments.id, id))
+        .returning();
+      
+      return result[0] || undefined;
+    } catch (error) {
+      console.error('Error updating appointment:', error);
       throw error;
     }
-    
-    // Map snake_case back to camelCase
-    return {
-      id: result.id,
-      name: result.name,
-      phone: result.phone,
-      email: result.email,
-      appointmentDate: result.appointment_date,
-      appointmentTime: result.appointment_time,
-      deviceBrand: result.device_brand,
-      deviceModel: result.device_model,
-      serviceType: result.service_type,
-      serviceLocation: result.service_location,
-      address: result.address,
-      status: result.status,
-      whatsappSent: result.whatsapp_sent,
-      createdAt: result.created_at,
-      updatedAt: result.updated_at
-    };
   }
 
   async deleteAppointment(id: number): Promise<boolean> {
-    const { error } = await supabase
-      .from('appointments')
-      .delete()
-      .eq('id', id);
-    
-    if (error) {
+    try {
+      await db.delete(appointments).where(eq(appointments.id, id));
+      return true;
+    } catch (error) {
+      console.error('Error deleting appointment:', error);
       throw error;
     }
-    
-    return true;
   }
 
   async markWhatsAppSent(id: number): Promise<void> {
-    const { error } = await supabase
-      .from('appointments')
-      .update({ whatsapp_sent: new Date().toISOString() })
-      .eq('id', id);
-    
-    if (error) {
+    try {
+      await db
+        .update(appointments)
+        .set({ whatsappSent: new Date() })
+        .where(eq(appointments.id, id));
+    } catch (error) {
+      console.error('Error marking WhatsApp sent:', error);
       throw error;
     }
   }
 
   // Admin operations
   async createAdminUser(adminData: { username: string; password: string }): Promise<AdminUser> {
-    const hashedPassword = await bcrypt.hash(adminData.password, 10);
-    
-    const { data, error } = await supabase
-      .from('admin_users')
-      .insert({
-        username: adminData.username,
-        password_hash: hashedPassword,
-        role: 'admin'
-      })
-      .select()
-      .single();
-    
-    if (error) {
+    try {
+      const hashedPassword = await bcrypt.hash(adminData.password, 10);
+      
+      const result = await db.insert(adminUsers)
+        .values({
+          username: adminData.username,
+          passwordHash: hashedPassword,
+          role: 'admin'
+        })
+        .returning();
+      
+      return result[0];
+    } catch (error) {
+      console.error('Error creating admin user:', error);
       throw error;
     }
-    
-    return data;
   }
 
   async validateAdminLogin(username: string, password: string): Promise<AdminUser | null> {
-    const { data: admin, error } = await supabase
-      .from('admin_users')
-      .select('*')
-      .eq('username', username)
-      .single();
-    
-    if (error || !admin) {
+    try {
+      const result = await db.select()
+        .from(adminUsers)
+        .where(eq(adminUsers.username, username))
+        .limit(1);
+      
+      const admin = result[0];
+      if (!admin) {
+        return null;
+      }
+
+      const isValid = await bcrypt.compare(password, admin.passwordHash);
+      
+      return isValid ? admin : null;
+    } catch (error) {
+      console.error('Error validating admin login:', error);
       return null;
     }
-
-    const isValid = await bcrypt.compare(password, admin.password_hash);
-    
-    return isValid ? admin : null;
   }
 
   async getAdminUser(id: number): Promise<AdminUser | undefined> {
-    const { data, error } = await supabase
-      .from('admin_users')
-      .select('*')
-      .eq('id', id)
-      .single();
-    
-    if (error && error.code !== 'PGRST116') {
+    try {
+      const result = await db.select()
+        .from(adminUsers)
+        .where(eq(adminUsers.id, id))
+        .limit(1);
+      
+      return result[0] || undefined;
+    } catch (error) {
+      console.error('Error getting admin user:', error);
       throw error;
     }
-    
-    return data || undefined;
   }
 }
 

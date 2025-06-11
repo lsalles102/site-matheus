@@ -126,7 +126,7 @@ export default function Landing() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10 max-w-7xl mx-auto">
             {/* Blindagem Básica */}
             <Card className="bg-card/80 backdrop-blur-md hover:shadow-2xl hover:shadow-cyan/20 transition-all duration-500 border-2 border-primary/30 hover:border-cyan slide-up transform hover:scale-105">
               <CardContent className="p-10">
@@ -185,6 +185,32 @@ export default function Landing() {
                   <li className="flex items-center text-lg">
                     <Check className="text-cyan mr-4 w-6 h-6" />
                     Aplicação vidro frontal, traseiro e câmeras{" "}
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+            {/* Novo Card - Vantagens Técnicas */}
+            <Card className="bg-card/80 backdrop-blur-md hover:shadow-2xl hover:shadow-cyan/20 transition-all duration-500 border-2 border-primary/30 hover:border-cyan slide-up transform hover:scale-105">
+              <CardContent className="p-10">
+                <div className="w-20 h-20 bg-gradient-to-br from-primary/30 to-cyan/30 rounded-2xl flex items-center justify-center mb-8 glow">
+                  <Check className="text-cyan w-10 h-10" />
+                </div>
+                <h4 className="text-3xl font-bold text-white-pure mb-6">
+                  Vantagens Técnicas
+                </h4>
+                <ul className="space-y-4 text-gray-light mb-8">
+                  <li className="flex items-center text-lg">
+                    <Check className="text-cyan mr-4 w-6 h-6" />
+                    Não altera a originalidade do aparelho
+                  </li>
+                  <li className="flex items-center text-lg">
+                    <Check className="text-cyan mr-4 w-6 h-6" />
+                    Não altera a qualidade das câmeras
+                  </li>
+                  <li className="flex items-center text-lg">
+                    <Check className="text-cyan mr-4 w-6 h-6" />
+                    Não perde a garantia do fabricante
                   </li>
                 </ul>
               </CardContent>

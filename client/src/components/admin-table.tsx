@@ -19,16 +19,16 @@ export default function AdminTable() {
   
   const [filters, setFilters] = useState({
     search: "",
-    brand: "",
+    brand: "all",
     date: "",
-    status: "",
+    status: "all",
   });
 
   const [editingAppointment, setEditingAppointment] = useState<Appointment | null>(null);
   const [editForm, setEditForm] = useState<Partial<Appointment>>({});
 
   // Query para buscar agendamentos
-  const { data: appointments = [], isLoading, refetch } = useQuery({
+  const { data: appointments = [], isLoading, refetch } = useQuery<Appointment[]>({
     queryKey: ["/api/admin/appointments", filters],
     queryFn: getQueryFn({ on401: "throw" }),
   });
@@ -145,7 +145,9 @@ export default function AdminTable() {
   };
 
   const handleFilterChange = (key: string, value: string) => {
-    setFilters(prev => ({ ...prev, [key]: value }));
+    // Convert "all" back to empty string for backend compatibility
+    const filterValue = value === "all" ? "" : value;
+    setFilters(prev => ({ ...prev, [key]: filterValue }));
   };
 
   const getStatusBadge = (status: string) => {
@@ -195,7 +197,7 @@ export default function AdminTable() {
                   <SelectValue placeholder="Todas" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Todas</SelectItem>
+                  <SelectItem value="all">Todas</SelectItem>
                   <SelectItem value="iPhone">iPhone</SelectItem>
                   <SelectItem value="Samsung">Samsung</SelectItem>
                   <SelectItem value="Xiaomi">Xiaomi</SelectItem>
@@ -212,7 +214,7 @@ export default function AdminTable() {
                   <SelectValue placeholder="Todos" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Todos</SelectItem>
+                  <SelectItem value="all">Todos</SelectItem>
                   <SelectItem value="confirmado">Confirmado</SelectItem>
                   <SelectItem value="cancelado">Cancelado</SelectItem>
                   <SelectItem value="concluido">Concluído</SelectItem>
@@ -259,14 +261,14 @@ export default function AdminTable() {
                       <p className="mt-2 text-gray-500">Carregando agendamentos...</p>
                     </TableCell>
                   </TableRow>
-                ) : appointments.length === 0 ? (
+                ) : (appointments as Appointment[]).length === 0 ? (
                   <TableRow>
                     <TableCell colSpan={7} className="text-center py-8">
                       <p className="text-gray-500">Nenhum agendamento encontrado</p>
                     </TableCell>
                   </TableRow>
                 ) : (
-                  appointments.map((appointment: Appointment) => (
+                  (appointments as Appointment[]).map((appointment: Appointment) => (
                     <TableRow key={appointment.id}>
                       <TableCell>
                         <div>

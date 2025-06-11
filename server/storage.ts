@@ -64,9 +64,22 @@ export class DatabaseStorage implements IStorage {
 
   // Appointment operations
   async createAppointment(appointment: InsertAppointment): Promise<Appointment> {
+    // Map camelCase to snake_case for Supabase
+    const supabaseData = {
+      name: appointment.name,
+      phone: appointment.phone,
+      email: appointment.email,
+      appointment_date: appointment.appointmentDate,
+      appointment_time: appointment.appointmentTime,
+      device_brand: appointment.deviceBrand,
+      device_model: appointment.deviceModel,
+      service_type: appointment.serviceType,
+      status: appointment.status || 'confirmado'
+    };
+
     const { data, error } = await supabase
       .from('appointments')
-      .insert(appointment)
+      .insert(supabaseData)
       .select()
       .single();
     
@@ -74,7 +87,22 @@ export class DatabaseStorage implements IStorage {
       throw error;
     }
     
-    return data;
+    // Map snake_case back to camelCase
+    return {
+      id: data.id,
+      name: data.name,
+      phone: data.phone,
+      email: data.email,
+      appointmentDate: data.appointment_date,
+      appointmentTime: data.appointment_time,
+      deviceBrand: data.device_brand,
+      deviceModel: data.device_model,
+      serviceType: data.service_type,
+      status: data.status,
+      whatsappSent: data.whatsapp_sent,
+      createdAt: data.created_at,
+      updatedAt: data.updated_at
+    };
   }
 
   async getAppointments(filters: {

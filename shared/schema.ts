@@ -74,6 +74,12 @@ export const insertAppointmentSchema = createInsertSchema(appointments).omit({
   whatsappSent: true,
   createdAt: true,
   updatedAt: true,
+  status: true,
+}).extend({
+  // Override serviceType to match expected values
+  serviceType: z.enum(["basica", "premium"], {
+    required_error: "Tipo de serviço é obrigatório",
+  }),
 });
 
 export const adminLoginSchema = z.object({

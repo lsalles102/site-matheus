@@ -121,14 +121,14 @@ export default function Admin() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-card shadow-sm border-b border-border">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Painel Administrativo</h1>
-              <p className="text-gray-600">Global Tech - Gerenciamento de Agendamentos</p>
+              <h1 className="text-2xl font-bold text-foreground">Painel Administrativo</h1>
+              <p className="text-muted-foreground">Global Tech - Gerenciamento de Agendamentos</p>
             </div>
             <Button variant="outline" onClick={() => window.location.href = "/api/logout"}>
               <LogOut className="mr-2 h-4 w-4" />

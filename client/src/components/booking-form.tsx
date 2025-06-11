@@ -224,22 +224,22 @@ export default function BookingForm() {
                 onValueChange={(value) => form.setValue("serviceType", value as "basica" | "premium")}
                 className="grid md:grid-cols-2 gap-4"
               >
-                <div className="flex items-center space-x-2 p-4 border-2 border-gray-200 rounded-xl hover:border-primary transition-all cursor-pointer">
+                <div className="flex items-center space-x-2 p-4 border-2 border-border rounded-xl hover:border-primary transition-all cursor-pointer">
                   <RadioGroupItem value="basica" id="basica" />
                   <div className="flex-1">
                     <Label htmlFor="basica" className="cursor-pointer">
-                      <div className="font-semibold text-dark-gray">Blindagem Básica</div>
-                      <div className="text-sm text-medium-gray">Proteção essencial</div>
+                      <div className="font-semibold text-foreground">Blindagem Básica</div>
+                      <div className="text-sm text-muted-foreground">Proteção essencial</div>
                     </Label>
                   </div>
                 </div>
                 
-                <div className="flex items-center space-x-2 p-4 border-2 border-gray-200 rounded-xl hover:border-primary transition-all cursor-pointer">
+                <div className="flex items-center space-x-2 p-4 border-2 border-border rounded-xl hover:border-primary transition-all cursor-pointer">
                   <RadioGroupItem value="premium" id="premium" />
                   <div className="flex-1">
                     <Label htmlFor="premium" className="cursor-pointer">
-                      <div className="font-semibold text-dark-gray">Blindagem Premium</div>
-                      <div className="text-sm text-medium-gray">Proteção completa</div>
+                      <div className="font-semibold text-foreground">Blindagem Premium</div>
+                      <div className="text-sm text-muted-foreground">Proteção completa</div>
                     </Label>
                   </div>
                 </div>

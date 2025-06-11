@@ -34,7 +34,10 @@ export default function AdminLogin() {
         title: "Login realizado com sucesso",
         description: `Bem-vindo, ${data.admin.username}!`,
       });
-      navigate("/admin");
+      // Force a small delay to ensure session is properly set
+      setTimeout(() => {
+        navigate("/admin");
+      }, 100);
     },
     onError: (error: any) => {
       toast({

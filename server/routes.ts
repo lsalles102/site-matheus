@@ -196,6 +196,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Create initial admin user (for setup only)
+  app.post("/api/admin/create", async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      
+      if (!username || !password) {
+        return res.status(400).json({ message: "Username e password são obrigatórios" });
+      }
+      
+      const admin = await storage.createAdminUser({ username, password });
+      res.json({ 
+        success: true, 
+        message: "Usuário admin criado com sucesso",
+        admin: { id: admin.id, username: admin.username, role: admin.role }
+      });
+    } catch (error) {
+      console.error("Error creating admin user:", error);
+      res.status(500).json({ message: "Erro ao criar usuário admin" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

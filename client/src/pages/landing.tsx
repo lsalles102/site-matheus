@@ -1,7 +1,16 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Shield, Crown, Check, Phone, Mail, MapPin, Calendar, Clock } from "lucide-react";
+import {
+  Shield,
+  Crown,
+  Check,
+  Phone,
+  Mail,
+  MapPin,
+  Calendar,
+  Clock,
+} from "lucide-react";
 import BookingForm from "@/components/booking-form";
 import WhatsAppButton from "@/components/whatsapp-button";
 
@@ -9,9 +18,9 @@ export default function Landing() {
   const [showBooking, setShowBooking] = useState(false);
 
   const scrollToBooking = () => {
-    const bookingSection = document.getElementById('agendamento');
+    const bookingSection = document.getElementById("agendamento");
     if (bookingSection) {
-      bookingSection.scrollIntoView({ behavior: 'smooth' });
+      bookingSection.scrollIntoView({ behavior: "smooth" });
       setShowBooking(true);
     }
   };
@@ -27,43 +36,73 @@ export default function Landing() {
                 <Phone className="text-white w-6 h-6" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-white-pure tracking-tight">Global Tech</h1>
-                <p className="text-sm text-cyan font-medium">Blindagem Líquida</p>
+                <h1 className="text-2xl font-bold text-white-pure tracking-tight">
+                  Global Tech
+                </h1>
+                <p className="text-sm text-cyan font-medium">
+                  Blindagem Líquida
+                </p>
               </div>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="#home" className="text-gray-light hover:text-cyan transition-colors duration-300 font-medium">Início</a>
-              <a href="#servicos" className="text-gray-light hover:text-cyan transition-colors duration-300 font-medium">Serviços</a>
-              <a href="#agendamento" className="text-gray-light hover:text-cyan transition-colors duration-300 font-medium">Agendar</a>
-              <a href="#contato" className="text-gray-light hover:text-cyan transition-colors duration-300 font-medium">Contato</a>
+              <a
+                href="#home"
+                className="text-gray-light hover:text-cyan transition-colors duration-300 font-medium"
+              >
+                Início
+              </a>
+              <a
+                href="#servicos"
+                className="text-gray-light hover:text-cyan transition-colors duration-300 font-medium"
+              >
+                Serviços
+              </a>
+              <a
+                href="#agendamento"
+                className="text-gray-light hover:text-cyan transition-colors duration-300 font-medium"
+              >
+                Agendar
+              </a>
+              <a
+                href="#contato"
+                className="text-gray-light hover:text-cyan transition-colors duration-300 font-medium"
+              >
+                Contato
+              </a>
             </nav>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section id="home" className="relative bg-gradient-to-br from-dark-blue via-primary/20 to-primary-dark text-white py-24 hexagon-pattern overflow-hidden">
+      <section
+        id="home"
+        className="relative bg-gradient-to-br from-dark-blue via-primary/20 to-primary-dark text-white py-24 hexagon-pattern overflow-hidden"
+      >
         <div className="absolute inset-0 bg-gradient-to-r from-dark-blue/90 to-transparent"></div>
         <div className="relative container mx-auto px-4">
           <div className="max-w-5xl mx-auto text-center slide-up">
             <h2 className="text-5xl md:text-7xl font-black mb-8 leading-tight tracking-tight">
               Proteja seu celular com{" "}
-              <span className="text-cyan glow">tecnologia de blindagem líquida</span>
+              <span className="text-cyan glow">
+                tecnologia de blindagem líquida
+              </span>
             </h2>
             <p className="text-xl md:text-2xl mb-12 text-gray-light leading-relaxed max-w-3xl mx-auto">
-              Nanotecnologia avançada que oferece proteção invisível, resistência superior e alta durabilidade para sua tela
+              Nanotecnologia avançada que oferece proteção 15x,
+              resistência superior e alta durabilidade para sua tela
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="bg-gradient-to-r from-cyan to-primary hover:from-primary hover:to-cyan text-dark-blue px-10 py-5 text-xl font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 glow float"
                 onClick={scrollToBooking}
               >
                 <Calendar className="mr-3 h-6 w-6" />
                 Agendar Agora
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 size="lg"
                 className="border-2 border-cyan text-cyan hover:bg-cyan hover:text-dark-blue px-10 py-5 text-xl font-bold transition-all duration-300"
               >
@@ -82,10 +121,11 @@ export default function Landing() {
               Nossos Serviços de Blindagem
             </h3>
             <p className="text-xl text-gray-light max-w-3xl mx-auto leading-relaxed">
-              Tecnologia de ponta em nanotecnologia para proteger seu investimento
+              Tecnologia de ponta em nanotecnologia para proteger seu
+              investimento
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
             {/* Blindagem Básica */}
             <Card className="bg-card/80 backdrop-blur-md hover:shadow-2xl hover:shadow-cyan/20 transition-all duration-500 border-2 border-primary/30 hover:border-cyan slide-up transform hover:scale-105">
@@ -93,11 +133,13 @@ export default function Landing() {
                 <div className="w-20 h-20 bg-gradient-to-br from-primary/30 to-cyan/30 rounded-2xl flex items-center justify-center mb-8 glow">
                   <Shield className="text-cyan w-10 h-10" />
                 </div>
-                <h4 className="text-3xl font-bold text-white-pure mb-6">Blindagem Básica</h4>
+                <h4 className="text-3xl font-bold text-white-pure mb-6">
+                  Blindagem Básica
+                </h4>
                 <ul className="space-y-4 text-gray-light mb-8">
                   <li className="flex items-center text-lg">
                     <Check className="text-cyan mr-4 w-6 h-6" />
-                    Proteção contra riscos e arranhões
+                    Proteção contra riscos,arranhões,impactos e quedas
                   </li>
                   <li className="flex items-center text-lg">
                     <Check className="text-cyan mr-4 w-6 h-6" />
@@ -109,7 +151,7 @@ export default function Landing() {
                   </li>
                   <li className="flex items-center text-lg">
                     <Check className="text-cyan mr-4 w-6 h-6" />
-                    Garantia contra defeitos
+                    Aplicação apenas no vidro frontal
                   </li>
                 </ul>
               </CardContent>
@@ -124,23 +166,25 @@ export default function Landing() {
                 <div className="w-20 h-20 bg-gradient-to-br from-cyan/30 to-primary/30 rounded-2xl flex items-center justify-center mb-8 glow">
                   <Crown className="text-cyan w-10 h-10" />
                 </div>
-                <h4 className="text-3xl font-bold text-white-pure mb-6">Blindagem Premium</h4>
+                <h4 className="text-3xl font-bold text-white-pure mb-6">
+                  Blindagem Premium
+                </h4>
                 <ul className="space-y-4 text-gray-light mb-8">
                   <li className="flex items-center text-lg">
                     <Check className="text-cyan mr-4 w-6 h-6" />
-                    Proteção contra impactos e quedas
+                    Proteção contra riscos,arranhões,impactos e quedas
                   </li>
                   <li className="flex items-center text-lg">
                     <Check className="text-cyan mr-4 w-6 h-6" />
-                    Resistência a líquidos
+                    Aplicação invisível
                   </li>
                   <li className="flex items-center text-lg">
                     <Check className="text-cyan mr-4 w-6 h-6" />
-                    Durabilidade de 24 meses
+                    Durabilidade de 12 meses
                   </li>
                   <li className="flex items-center text-lg">
                     <Check className="text-cyan mr-4 w-6 h-6" />
-                    Garantia total de substituição
+                    Aplicação vidro frontal, traseiro e câmeras{" "}
                   </li>
                 </ul>
               </CardContent>
@@ -150,7 +194,10 @@ export default function Landing() {
       </section>
 
       {/* Contact Information Section */}
-      <section id="contato" className="py-24 bg-gradient-to-b from-background to-card">
+      <section
+        id="contato"
+        className="py-24 bg-gradient-to-b from-background to-card"
+      >
         <div className="container mx-auto px-4">
           <div className="text-center mb-20 fade-in">
             <h3 className="text-4xl md:text-5xl font-black text-white-pure mb-6 tracking-tight">
@@ -170,8 +217,10 @@ export default function Landing() {
                   Endereço
                 </h4>
                 <p className="text-gray-light text-xl leading-relaxed">
-                  R. Ten. Calixto, 100<br />
-                  Turu, São Luís - MA<br />
+                  R. Ten. Calixto, 100
+                  <br />
+                  Turu, São Luís - MA
+                  <br />
                   CEP: 65066-410
                 </p>
               </div>
@@ -181,9 +230,7 @@ export default function Landing() {
                   <Phone className="mr-4 text-cyan w-6 h-6" />
                   Telefone & WhatsApp
                 </h4>
-                <p className="text-gray-light text-xl">
-                  (98) 99181-9204
-                </p>
+                <p className="text-gray-light text-xl">(98) 99181-9204</p>
               </div>
 
               <div className="bg-card/80 backdrop-blur-md p-8 rounded-2xl border-2 border-primary/30 shadow-lg hover:shadow-cyan/20 transition-all duration-300">
@@ -192,9 +239,20 @@ export default function Landing() {
                   Horário de Funcionamento
                 </h4>
                 <div className="text-gray-light space-y-3 text-lg">
-                  <p><strong className="text-white-pure">Segunda a Sexta:</strong> 9h às 18h</p>
-                  <p><strong className="text-white-pure">Sábado:</strong> 9h às 13h</p>
-                  <p><strong className="text-white-pure">Domingo:</strong> Fechado</p>
+                  <p>
+                    <strong className="text-white-pure">
+                      Segunda a Sexta:
+                    </strong>{" "}
+                    9h às 18h
+                  </p>
+                  <p>
+                    <strong className="text-white-pure">Sábado:</strong> 9h às
+                    13h
+                  </p>
+                  <p>
+                    <strong className="text-white-pure">Domingo:</strong>{" "}
+                    Fechado
+                  </p>
                 </div>
               </div>
             </div>
@@ -205,7 +263,7 @@ export default function Landing() {
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.3890324716!2d-44.2618778!3d-2.5297855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7f69a7a7a7a7a7a7%3A0x7a7a7a7a7a7a7a7a!2sR.%20Ten.%20Calixto%2C%20100%20-%20Turu%2C%20S%C3%A3o%20Lu%C3%ADs%20-%20MA%2C%2065066-410!5e0!3m2!1spt-BR!2sbr!4v1234567890123!5m2!1spt-BR!2sbr"
                 width="100%"
                 height="100%"
-                style={{ border: 0, borderRadius: '16px' }}
+                style={{ border: 0, borderRadius: "16px" }}
                 className="shadow-2xl shadow-cyan/20 border-2 border-cyan/30"
                 allowFullScreen
                 loading="lazy"
@@ -218,7 +276,10 @@ export default function Landing() {
       </section>
 
       {/* Booking Section */}
-      <section id="agendamento" className="py-24 bg-gradient-to-b from-card to-background nano-pattern">
+      <section
+        id="agendamento"
+        className="py-24 bg-gradient-to-b from-card to-background nano-pattern"
+      >
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-16 fade-in">
@@ -247,55 +308,85 @@ export default function Landing() {
                   <Phone className="text-white w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="text-2xl font-bold text-white-pure">Global Tech</h4>
+                  <h4 className="text-2xl font-bold text-white-pure">
+                    Global Tech
+                  </h4>
                   <p className="text-cyan font-medium">Blindagem Líquida</p>
                 </div>
               </div>
               <p className="text-gray-light text-lg leading-relaxed">
-                Protegendo seus dispositivos com a mais avançada tecnologia de nanotecnologia.
+                Protegendo seus dispositivos com a mais avançada tecnologia de
+                nanotecnologia.
               </p>
             </div>
 
             <div className="fade-in">
-              <h5 className="font-bold mb-6 text-white-pure text-xl">Serviços</h5>
+              <h5 className="font-bold mb-6 text-white-pure text-xl">
+                Serviços
+              </h5>
               <ul className="space-y-3 text-gray-light text-lg">
-                <li className="hover:text-cyan transition-colors">Blindagem Básica</li>
-                <li className="hover:text-cyan transition-colors">Blindagem Premium</li>
-                <li className="hover:text-cyan transition-colors">Garantia Estendida</li>
-                <li className="hover:text-cyan transition-colors">Suporte Técnico</li>
+                <li className="hover:text-cyan transition-colors">
+                  Blindagem Básica
+                </li>
+                <li className="hover:text-cyan transition-colors">
+                  Blindagem Premium
+                </li>
+                <li className="hover:text-cyan transition-colors">
+                  Garantia Estendida
+                </li>
+                <li className="hover:text-cyan transition-colors">
+                  Suporte Técnico
+                </li>
               </ul>
             </div>
 
             <div className="fade-in">
-              <h5 className="font-bold mb-6 text-white-pure text-xl">Contato</h5>
+              <h5 className="font-bold mb-6 text-white-pure text-xl">
+                Contato
+              </h5>
               <ul className="space-y-4 text-gray-light text-lg">
                 <li className="flex items-center hover:text-cyan transition-colors">
                   <Phone className="mr-3 w-5 h-5 text-cyan" /> (98) 99181-9204
                 </li>
                 <li className="flex items-center hover:text-cyan transition-colors">
-                  <Mail className="mr-3 w-5 h-5 text-cyan" /> contato@globaltech.com
+                  <Mail className="mr-3 w-5 h-5 text-cyan" />{" "}
+                  contato@globaltech.com
                 </li>
                 <li className="flex items-center hover:text-cyan transition-colors">
-                  <MapPin className="mr-3 w-5 h-5 text-cyan" /> Turu, São Luís - MA
+                  <MapPin className="mr-3 w-5 h-5 text-cyan" /> Turu, São Luís -
+                  MA
                 </li>
               </ul>
             </div>
 
             <div className="fade-in">
-              <h5 className="font-bold mb-6 text-white-pure text-xl">Horário de Funcionamento</h5>
+              <h5 className="font-bold mb-6 text-white-pure text-xl">
+                Horário de Funcionamento
+              </h5>
               <ul className="space-y-3 text-gray-light text-lg">
                 <li className="flex items-center">
-                  <Clock className="mr-3 w-5 h-5 text-cyan" /> 
-                  <span><strong className="text-white-pure">Segunda - Sexta:</strong> 9h às 18h</span>
+                  <Clock className="mr-3 w-5 h-5 text-cyan" />
+                  <span>
+                    <strong className="text-white-pure">
+                      Segunda - Sexta:
+                    </strong>{" "}
+                    9h às 18h
+                  </span>
                 </li>
-                <li><strong className="text-white-pure">Sábado:</strong> 9h às 13h</li>
-                <li><strong className="text-white-pure">Domingo:</strong> Fechado</li>
+                <li>
+                  <strong className="text-white-pure">Sábado:</strong> 9h às 13h
+                </li>
+                <li>
+                  <strong className="text-white-pure">Domingo:</strong> Fechado
+                </li>
               </ul>
             </div>
           </div>
 
           <div className="border-t border-cyan/30 mt-16 pt-8 text-center text-gray-light">
-            <p className="text-lg">&copy; 2024 Global Tech. Todos os direitos reservados.</p>
+            <p className="text-lg">
+              &copy; 2024 Global Tech. Todos os direitos reservados.
+            </p>
           </div>
         </div>
       </footer>

@@ -17,54 +17,55 @@ export default function Landing() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background nano-pattern">
       {/* Header */}
-      <header className="bg-card shadow-lg border-b border-border sticky top-0 z-40">
+      <header className="bg-card/90 backdrop-blur-md shadow-lg border-b border-primary/20 sticky top-0 z-40 fade-in">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <Phone className="text-white w-5 h-5" />
+              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center glow">
+                <Phone className="text-white w-6 h-6" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-foreground">Global Tech</h1>
-                <p className="text-sm text-muted-foreground">Blindagem Líquida</p>
+                <h1 className="text-2xl font-bold text-white-pure tracking-tight">Global Tech</h1>
+                <p className="text-sm text-cyan font-medium">Blindagem Líquida</p>
               </div>
             </div>
-            <nav className="hidden md:flex space-x-6">
-              <a href="#home" className="text-muted-foreground hover:text-primary transition-colors">Início</a>
-              <a href="#servicos" className="text-muted-foreground hover:text-primary transition-colors">Serviços</a>
-              <a href="#agendamento" className="text-muted-foreground hover:text-primary transition-colors">Agendar</a>
-              <a href="#contato" className="text-muted-foreground hover:text-primary transition-colors">Contato</a>
+            <nav className="hidden md:flex space-x-8">
+              <a href="#home" className="text-gray-light hover:text-cyan transition-colors duration-300 font-medium">Início</a>
+              <a href="#servicos" className="text-gray-light hover:text-cyan transition-colors duration-300 font-medium">Serviços</a>
+              <a href="#agendamento" className="text-gray-light hover:text-cyan transition-colors duration-300 font-medium">Agendar</a>
+              <a href="#contato" className="text-gray-light hover:text-cyan transition-colors duration-300 font-medium">Contato</a>
             </nav>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section id="home" className="bg-gradient-to-br from-primary to-primary-dark text-white py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+      <section id="home" className="relative bg-gradient-to-br from-dark-blue via-primary/20 to-primary-dark text-white py-24 hexagon-pattern overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-dark-blue/90 to-transparent"></div>
+        <div className="relative container mx-auto px-4">
+          <div className="max-w-5xl mx-auto text-center slide-up">
+            <h2 className="text-5xl md:text-7xl font-black mb-8 leading-tight tracking-tight">
               Proteja seu celular com{" "}
-              <span className="text-warning">tecnologia de blindagem líquida</span>
+              <span className="text-cyan glow">tecnologia de blindagem líquida</span>
             </h2>
-            <p className="text-xl md:text-2xl mb-8 text-muted-foreground opacity-90">
+            <p className="text-xl md:text-2xl mb-12 text-gray-light leading-relaxed max-w-3xl mx-auto">
               Nanotecnologia avançada que oferece proteção invisível, resistência superior e alta durabilidade para sua tela
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button 
                 size="lg" 
-                className="bg-success hover:bg-green-600 text-white px-8 py-4 text-lg font-semibold shadow-lg transform hover:scale-105 transition-all"
+                className="bg-gradient-to-r from-cyan to-primary hover:from-primary hover:to-cyan text-dark-blue px-10 py-5 text-xl font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 glow float"
                 onClick={scrollToBooking}
               >
-                <Calendar className="mr-2 h-5 w-5" />
+                <Calendar className="mr-3 h-6 w-6" />
                 Agendar Agora
               </Button>
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 text-lg font-semibold"
+                className="border-2 border-cyan text-cyan hover:bg-cyan hover:text-dark-blue px-10 py-5 text-xl font-bold transition-all duration-300"
               >
                 Ver Como Funciona
               </Button>
@@ -74,40 +75,40 @@ export default function Landing() {
       </section>
 
       {/* Services Section */}
-      <section id="servicos" className="py-20 bg-card">
+      <section id="servicos" className="py-24 bg-card/50 backdrop-blur-sm">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <div className="text-center mb-20 fade-in">
+            <h3 className="text-4xl md:text-5xl font-black text-white-pure mb-6 tracking-tight">
               Nossos Serviços de Blindagem
             </h3>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-gray-light max-w-3xl mx-auto leading-relaxed">
               Tecnologia de ponta em nanotecnologia para proteger seu investimento
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
             {/* Blindagem Básica */}
-            <Card className="bg-secondary hover:shadow-xl transition-all duration-300 border-border">
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-primary/20 rounded-xl flex items-center justify-center mb-6">
-                  <Shield className="text-primary w-8 h-8" />
+            <Card className="bg-card/80 backdrop-blur-md hover:shadow-2xl hover:shadow-cyan/20 transition-all duration-500 border-2 border-primary/30 hover:border-cyan slide-up transform hover:scale-105">
+              <CardContent className="p-10">
+                <div className="w-20 h-20 bg-gradient-to-br from-primary/30 to-cyan/30 rounded-2xl flex items-center justify-center mb-8 glow">
+                  <Shield className="text-cyan w-10 h-10" />
                 </div>
-                <h4 className="text-2xl font-bold text-foreground mb-4">Blindagem Básica</h4>
-                <ul className="space-y-3 text-muted-foreground mb-6">
-                  <li className="flex items-center">
-                    <Check className="text-success mr-3 w-5 h-5" />
+                <h4 className="text-3xl font-bold text-white-pure mb-6">Blindagem Básica</h4>
+                <ul className="space-y-4 text-gray-light mb-8">
+                  <li className="flex items-center text-lg">
+                    <Check className="text-cyan mr-4 w-6 h-6" />
                     Proteção contra riscos e arranhões
                   </li>
-                  <li className="flex items-center">
-                    <Check className="text-success mr-3 w-5 h-5" />
+                  <li className="flex items-center text-lg">
+                    <Check className="text-cyan mr-4 w-6 h-6" />
                     Aplicação invisível
                   </li>
-                  <li className="flex items-center">
-                    <Check className="text-success mr-3 w-5 h-5" />
+                  <li className="flex items-center text-lg">
+                    <Check className="text-cyan mr-4 w-6 h-6" />
                     Durabilidade de 12 meses
                   </li>
-                  <li className="flex items-center">
-                    <Check className="text-success mr-3 w-5 h-5" />
+                  <li className="flex items-center text-lg">
+                    <Check className="text-cyan mr-4 w-6 h-6" />
                     Garantia contra defeitos
                   </li>
                 </ul>
@@ -115,30 +116,30 @@ export default function Landing() {
             </Card>
 
             {/* Blindagem Premium */}
-            <Card className="bg-gradient-to-br from-primary to-primary-dark text-white hover:shadow-xl transition-all duration-300 relative border-primary">
-              <div className="absolute top-4 right-4 bg-warning text-black px-3 py-1 rounded-full text-sm font-semibold">
+            <Card className="bg-gradient-to-br from-cyan/20 to-primary/20 backdrop-blur-md hover:shadow-2xl hover:shadow-cyan/30 transition-all duration-500 relative border-2 border-cyan glow slide-up transform hover:scale-105">
+              <div className="absolute top-6 right-6 bg-gradient-to-r from-cyan to-primary text-dark-blue px-4 py-2 rounded-full text-sm font-bold">
                 Recomendado
               </div>
-              <CardContent className="p-8">
-                <div className="w-16 h-16 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-6">
-                  <Crown className="text-warning w-8 h-8" />
+              <CardContent className="p-10">
+                <div className="w-20 h-20 bg-gradient-to-br from-cyan/30 to-primary/30 rounded-2xl flex items-center justify-center mb-8 glow">
+                  <Crown className="text-cyan w-10 h-10" />
                 </div>
-                <h4 className="text-2xl font-bold mb-4">Blindagem Premium</h4>
-                <ul className="space-y-3 mb-6">
-                  <li className="flex items-center">
-                    <Check className="text-success mr-3 w-5 h-5" />
+                <h4 className="text-3xl font-bold text-white-pure mb-6">Blindagem Premium</h4>
+                <ul className="space-y-4 text-gray-light mb-8">
+                  <li className="flex items-center text-lg">
+                    <Check className="text-cyan mr-4 w-6 h-6" />
                     Proteção contra impactos e quedas
                   </li>
-                  <li className="flex items-center">
-                    <Check className="text-success mr-3 w-5 h-5" />
+                  <li className="flex items-center text-lg">
+                    <Check className="text-cyan mr-4 w-6 h-6" />
                     Resistência a líquidos
                   </li>
-                  <li className="flex items-center">
-                    <Check className="text-success mr-3 w-5 h-5" />
+                  <li className="flex items-center text-lg">
+                    <Check className="text-cyan mr-4 w-6 h-6" />
                     Durabilidade de 24 meses
                   </li>
-                  <li className="flex items-center">
-                    <Check className="text-success mr-3 w-5 h-5" />
+                  <li className="flex items-center text-lg">
+                    <Check className="text-cyan mr-4 w-6 h-6" />
                     Garantia total de substituição
                   </li>
                 </ul>
@@ -149,13 +150,13 @@ export default function Landing() {
       </section>
 
       {/* Contact Information Section */}
-      <section id="contato" className="py-20 bg-card">
+      <section id="contato" className="py-24 bg-gradient-to-b from-background to-card">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <div className="text-center mb-20 fade-in">
+            <h3 className="text-4xl md:text-5xl font-black text-white-pure mb-6 tracking-tight">
               Nossa Localização
             </h3>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl text-gray-light leading-relaxed">
               Venha nos visitar ou entre em contato conosco
             </p>
           </div>

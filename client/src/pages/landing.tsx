@@ -35,17 +35,12 @@ export default function Landing() {
               <img
                 src="/logo.png"
                 alt="Logo"
-                className="h-16 w-auto object-contain"
+                className="h-20 w-auto object-contain"
               />
             </div>
 
-            {/* Logo Central */}
+            {/* Spacer for layout balance */}
             <div className="hidden md:flex items-center justify-center flex-1 mx-8">
-              <img
-                src="/logo.png"
-                alt="Logo"
-                className="h-24 w-auto object-contain"
-              />
             </div>
 
             <nav className="hidden md:flex space-x-8">
@@ -81,7 +76,7 @@ export default function Landing() {
                 <img
                   src="/logo.png"
                   alt="Logo"
-                  className="h-14 w-auto object-contain"
+                  className="h-16 w-auto object-contain"
                 />
               </div>
 

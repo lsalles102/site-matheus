@@ -217,7 +217,7 @@ export default function Landing() {
                   Endereço
                 </h4>
                 <p className="text-gray-light text-xl leading-relaxed">
-                  R. Ten. Calixto, 100
+                  R. Ten. Calixto, 100 Ouro Minas Center
                   <br />
                   Turu, São Luís - MA
                   <br />
@@ -316,7 +316,7 @@ export default function Landing() {
               </div>
               <p className="text-gray-light text-lg leading-relaxed">
                 Protegendo seus dispositivos com a mais avançada tecnologia de
-                nanotecnologia.
+                carbono e titânio .
               </p>
             </div>
 
@@ -332,10 +332,10 @@ export default function Landing() {
                   Blindagem Premium
                 </li>
                 <li className="hover:text-cyan transition-colors">
-                  Garantia Estendida
+                  Durabilidade 12 meses
                 </li>
                 <li className="hover:text-cyan transition-colors">
-                  Suporte Técnico
+                  Aplicação invisivel
                 </li>
               </ul>
             </div>
@@ -349,8 +349,8 @@ export default function Landing() {
                   <Phone className="mr-3 w-5 h-5 text-cyan" /> (98) 99181-9204
                 </li>
                 <li className="flex items-center hover:text-cyan transition-colors">
-                  <Mail className="mr-3 w-5 h-5 text-cyan" />{" "}
-                  contato@globaltech.com
+                  <Mail className="mr-3 w-5 h-5 text-cyan" />
+                  globaltechdivineia@gmail.com
                 </li>
                 <li className="flex items-center hover:text-cyan transition-colors">
                   <MapPin className="mr-3 w-5 h-5 text-cyan" /> Turu, São Luís -

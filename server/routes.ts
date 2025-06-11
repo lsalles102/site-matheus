@@ -102,13 +102,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Admin logout
-  app.post("/api/admin/logout", (req, res) => {
-    req.session.destroy((err) => {
-      if (err) {
-        return res.status(500).json({ message: "Erro ao fazer logout" });
-      }
+  app.post("/api/admin/logout", (req: AuthenticatedRequest, res) => {
+    if (req.session) {
+      req.session.destroy((err) => {
+        if (err) {
+          console.error("Error destroying session:", err);
+          return res.status(500).json({ message: "Erro ao fazer logout" });
+        }
+        res.clearCookie('connect.sid');
+        res.json({ success: true, message: "Logout realizado com sucesso" });
+      });
+    } else {
       res.json({ success: true, message: "Logout realizado com sucesso" });
-    });
+    }
   });
 
   // Check admin authentication status

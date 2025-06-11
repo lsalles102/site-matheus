@@ -20,12 +20,21 @@ export function useAdminAuth() {
 
   const logoutMutation = useMutation({
     mutationFn: async () => {
-      return await apiRequest("/api/admin/logout", {
-        method: "POST",
-      });
+      try {
+        return await apiRequest("/api/admin/logout", {
+          method: "POST",
+        });
+      } catch (error) {
+        // Even if logout fails on server, clear local state
+        console.warn("Logout error (continuing anyway):", error);
+        return { success: true };
+      }
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/admin/me"] });
+      // Clear all admin-related cache
+      queryClient.removeQueries({ queryKey: ["/api/admin/me"] });
+      queryClient.removeQueries({ queryKey: ["/api/admin/appointments"] });
+      
       toast({
         title: "Logout realizado com sucesso",
         description: "Você foi desconectado do painel administrativo.",
@@ -33,10 +42,13 @@ export function useAdminAuth() {
       navigate("/admin/login");
     },
     onError: (error: any) => {
+      // Still navigate to login even on error
+      queryClient.removeQueries({ queryKey: ["/api/admin/me"] });
+      navigate("/admin/login");
+      
       toast({
-        title: "Erro no logout",
-        description: error.message || "Erro interno do servidor",
-        variant: "destructive",
+        title: "Sessão encerrada",
+        description: "Você foi desconectado do sistema.",
       });
     },
   });

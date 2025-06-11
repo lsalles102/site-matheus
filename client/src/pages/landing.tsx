@@ -148,6 +148,73 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Contact Information Section */}
+      <section id="contato" className="py-20 bg-card">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Nossa Localização
+            </h3>
+            <p className="text-xl text-muted-foreground">
+              Venha nos visitar ou entre em contato conosco
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            {/* Contact Information */}
+            <div className="space-y-8">
+              <div className="bg-background p-6 rounded-lg border border-border shadow-sm">
+                <h4 className="text-xl font-semibold text-foreground mb-4 flex items-center">
+                  <MapPin className="mr-3 text-primary w-5 h-5" />
+                  Endereço
+                </h4>
+                <p className="text-muted-foreground text-lg leading-relaxed">
+                  R. Ten. Calixto, 100<br />
+                  Turu, São Luís - MA<br />
+                  CEP: 65066-410
+                </p>
+              </div>
+
+              <div className="bg-background p-6 rounded-lg border border-border shadow-sm">
+                <h4 className="text-xl font-semibold text-foreground mb-4 flex items-center">
+                  <Phone className="mr-3 text-primary w-5 h-5" />
+                  Telefone & WhatsApp
+                </h4>
+                <p className="text-muted-foreground text-lg">
+                  (98) 99181-9204
+                </p>
+              </div>
+
+              <div className="bg-background p-6 rounded-lg border border-border shadow-sm">
+                <h4 className="text-xl font-semibold text-foreground mb-4 flex items-center">
+                  <Clock className="mr-3 text-primary w-5 h-5" />
+                  Horário de Funcionamento
+                </h4>
+                <div className="text-muted-foreground space-y-2">
+                  <p><strong>Segunda a Sexta:</strong> 9h às 18h</p>
+                  <p><strong>Sábado:</strong> 9h às 13h</p>
+                  <p><strong>Domingo:</strong> Fechado</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Google Maps Embed */}
+            <div className="h-96 md:h-full min-h-[400px]">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.3890324716!2d-44.2618778!3d-2.5297855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7f69a7a7a7a7a7a7%3A0x7a7a7a7a7a7a7a7a!2sR.%20Ten.%20Calixto%2C%20100%20-%20Turu%2C%20S%C3%A3o%20Lu%C3%ADs%20-%20MA%2C%2065066-410!5e0!3m2!1spt-BR!2sbr!4v1234567890123!5m2!1spt-BR!2sbr"
+                width="100%"
+                height="100%"
+                style={{ border: 0, borderRadius: '8px' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Localização Global Tech - R. Ten. Calixto, 100 - Turu, São Luís - MA"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Booking Section */}
       <section id="agendamento" className="py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -199,13 +266,13 @@ export default function Landing() {
               <h5 className="font-semibold mb-4 text-foreground">Contato</h5>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-center">
-                  <Phone className="mr-2 w-4 h-4" /> (11) 9999-9999
+                  <Phone className="mr-2 w-4 h-4" /> (98) 99181-9204
                 </li>
                 <li className="flex items-center">
                   <Mail className="mr-2 w-4 h-4" /> contato@globaltech.com
                 </li>
                 <li className="flex items-center">
-                  <MapPin className="mr-2 w-4 h-4" /> São Paulo, SP
+                  <MapPin className="mr-2 w-4 h-4" /> Turu, São Luís - MA
                 </li>
               </ul>
             </div>

@@ -1,0 +1,85 @@
+Crie um site em WordPress para a empresa Global Tech, especializada em blindagem líquida de celulares com nanotecnologia. O foco é permitir que o cliente:
+
+Veja o serviço rapidamente;
+
+Faça um cadastro simples;
+
+Agende o horário do atendimento;
+
+Receba uma confirmação automática por WhatsApp;
+
+E que o administrador consiga visualizar todos os agendamentos com facilidade.
+
+🧱 Estrutura do Projeto:
+🔷 Página Principal (Landing Page)
+Design moderno e responsivo (usar Elementor ou tema leve).
+
+Conteúdo:
+
+Título chamativo: "Proteja seu celular com tecnologia de blindagem líquida"
+
+Descrição curta com benefícios (ex: resistência, proteção invisível, alta durabilidade).
+
+Botão com link direto para o formulário de agendamento.
+
+🔷 Formulário de Cadastro e Agendamento
+Usar o plugin Bookly (ou Amelia) para agendamentos.
+
+Campos obrigatórios:
+
+Nome completo
+
+Telefone (com WhatsApp)
+
+E-mail
+
+Data e horário do atendimento
+
+Marca do aparelho (campo com pesquisa/autocompletar)
+
+Modelo do aparelho (campo texto)
+
+Tipo de serviço: Blindagem Básica / Blindagem Premium
+
+Após o envio, o cliente deve:
+
+Receber uma mensagem de confirmação automática via WhatsApp (usar link ou integração com plugin/API como "Click to Chat" ou Twilio).
+
+🔷 Área Administrativa
+Acesso via painel do WordPress.
+
+Admin pode:
+
+Ver todos os cadastros e agendamentos no painel Bookly/Amelia
+
+Buscar por nome, telefone, marca ou data
+
+Editar ou excluir agendamentos
+
+Exportar os dados (CSV)
+
+🔷 Integrações
+WhatsApp: enviar link de confirmação ou usar plugin para mensagem automática.
+
+Exemplo simples:
+"https://wa.me/55SEUNUMERO?text=Olá%20[Nome]%2C%20seu%20agendamento%20foi%20confirmado%20para%20[Data]%20às%20[Hora].%20Obrigado%20pela%20confiança%20na%20Global%20Tech!"
+
+Recomendar plugin “Click to Chat” ou “Join.Chat” para WhatsApp direto do site.
+
+🚀 Tecnologias Utilizadas:
+WordPress (PHP, MySQL)
+
+Elementor (ou tema leve como Astra)
+
+Plugin de agendamento: Bookly ou Amelia
+
+Plugin de WhatsApp: Click to Chat ou integração manual com API
+
+Hospedagem futura no Render ou Hostinger/SiteGround/Cloudways (WordPress compatíveis)
+
+🎯 Objetivo Final:
+Ter um site 100% funcional com landing page, agendamento online, cadastro organizado e integração simples com WhatsApp, tudo gerenciado facilmente pelo WordPress.
+
+fale em portugues, coloque balao para conversar via whatsapp
+
+painel administrativo apenas visivel para o administrador

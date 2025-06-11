@@ -283,7 +283,7 @@ export default function Landing() {
                 <li className="flex items-center">
                   <Clock className="mr-2 w-4 h-4" /> Segunda - Sexta: 9h às 18h
                 </li>
-                <li>Sábado: 9h às 14h</li>
+                <li>Sábado: 9h às 13h</li>
                 <li>Domingo: Fechado</li>
               </ul>
             </div>

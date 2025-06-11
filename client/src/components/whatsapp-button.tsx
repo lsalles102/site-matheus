@@ -1,5 +1,5 @@
 export default function WhatsAppButton() {
-  const whatsappNumber = "5511999999999";
+  const whatsappNumber = "5598991819204";
   const message = "Olá! Gostaria de saber mais sobre a blindagem líquida.";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 

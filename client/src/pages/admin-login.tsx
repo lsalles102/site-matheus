@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { adminLoginSchema, type AdminLogin } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
@@ -15,6 +15,7 @@ import { useToast } from "@/hooks/use-toast";
 export default function AdminLogin() {
   const [, navigate] = useLocation();
   const { toast } = useToast();
+  const queryClient = useQueryClient();
 
   const form = useForm<AdminLogin>({
     resolver: zodResolver(adminLoginSchema),
@@ -33,14 +34,16 @@ export default function AdminLogin() {
       return await response.json();
     },
     onSuccess: (data) => {
+      // Invalidate queries to refresh authentication state
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/me"] });
+      
       toast({
         title: "Login realizado com sucesso",
         description: `Bem-vindo, ${data.admin.username}!`,
       });
-      // Force a small delay to ensure session is properly set
-      setTimeout(() => {
-        navigate("/admin");
-      }, 100);
+      
+      // Navigate to admin panel
+      navigate("/admin");
     },
     onError: (error: any) => {
       toast({

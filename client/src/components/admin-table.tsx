@@ -246,6 +246,7 @@ export default function AdminTable() {
                   <TableHead>Data/Hora</TableHead>
                   <TableHead>Dispositivo</TableHead>
                   <TableHead>Serviço</TableHead>
+                  <TableHead>Endereço</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead className="text-right">Ações</TableHead>
                 </TableRow>
@@ -253,14 +254,14 @@ export default function AdminTable() {
               <TableBody>
                 {isLoading ? (
                   <TableRow>
-                    <TableCell colSpan={7} className="text-center py-8">
+                    <TableCell colSpan={8} className="text-center py-8">
                       <Loader2 className="h-6 w-6 animate-spin mx-auto" />
                       <p className="mt-2 text-gray-500">Carregando agendamentos...</p>
                     </TableCell>
                   </TableRow>
                 ) : (appointments as Appointment[]).length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={7} className="text-center py-8">
+                    <TableCell colSpan={8} className="text-center py-8">
                       <p className="text-gray-500">Nenhum agendamento encontrado</p>
                     </TableCell>
                   </TableRow>
@@ -296,15 +297,17 @@ export default function AdminTable() {
                           </p>
                         </div>
                       </TableCell>
-                      {appointment.serviceLocation === "domicilio" && (
-                        <TableCell>
-                          <div className="max-w-xs">
-                            <p className="text-sm text-gray-600 truncate" title={appointment.address}>
-                              {appointment.address}
+                      <TableCell>
+                        <div className="max-w-xs">
+                          {appointment.serviceLocation === "domicilio" ? (
+                            <p className="text-sm text-gray-600 truncate" title={appointment.address ?? ""}>
+                              {appointment.address ?? "Endereço não informado"}
                             </p>
-                          </div>
-                        </TableCell>
-                      )}
+                          ) : (
+                            <p className="text-sm text-gray-500">Na loja</p>
+                          )}
+                        </div>
+                      </TableCell>
                       <TableCell>{getStatusBadge(appointment.status)}</TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end gap-2">

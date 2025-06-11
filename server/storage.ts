@@ -140,13 +140,43 @@ export class DatabaseStorage implements IStorage {
       throw error;
     }
     
-    return data || [];
+    // Map snake_case back to camelCase for all appointments
+    return (data || []).map(item => ({
+      id: item.id,
+      name: item.name,
+      phone: item.phone,
+      email: item.email,
+      appointmentDate: item.appointment_date,
+      appointmentTime: item.appointment_time,
+      deviceBrand: item.device_brand,
+      deviceModel: item.device_model,
+      serviceType: item.service_type,
+      status: item.status,
+      whatsappSent: item.whatsapp_sent,
+      createdAt: item.created_at,
+      updatedAt: item.updated_at
+    }));
   }
 
   async updateAppointment(id: number, data: Partial<Appointment>): Promise<Appointment | undefined> {
+    // Map camelCase to snake_case for update
+    const updateData: any = {};
+    
+    if (data.name !== undefined) updateData.name = data.name;
+    if (data.phone !== undefined) updateData.phone = data.phone;
+    if (data.email !== undefined) updateData.email = data.email;
+    if (data.appointmentDate !== undefined) updateData.appointment_date = data.appointmentDate;
+    if (data.appointmentTime !== undefined) updateData.appointment_time = data.appointmentTime;
+    if (data.deviceBrand !== undefined) updateData.device_brand = data.deviceBrand;
+    if (data.deviceModel !== undefined) updateData.device_model = data.deviceModel;
+    if (data.serviceType !== undefined) updateData.service_type = data.serviceType;
+    if (data.status !== undefined) updateData.status = data.status;
+    
+    updateData.updated_at = new Date().toISOString();
+
     const { data: result, error } = await supabase
       .from('appointments')
-      .update(data)
+      .update(updateData)
       .eq('id', id)
       .select()
       .single();
@@ -155,7 +185,22 @@ export class DatabaseStorage implements IStorage {
       throw error;
     }
     
-    return result;
+    // Map snake_case back to camelCase
+    return {
+      id: result.id,
+      name: result.name,
+      phone: result.phone,
+      email: result.email,
+      appointmentDate: result.appointment_date,
+      appointmentTime: result.appointment_time,
+      deviceBrand: result.device_brand,
+      deviceModel: result.device_model,
+      serviceType: result.service_type,
+      status: result.status,
+      whatsappSent: result.whatsapp_sent,
+      createdAt: result.created_at,
+      updatedAt: result.updated_at
+    };
   }
 
   async deleteAppointment(id: number): Promise<boolean> {

@@ -36,7 +36,10 @@ export default function AdminTable() {
   // Mutation para atualizar agendamento
   const updateMutation = useMutation({
     mutationFn: async ({ id, data }: { id: number; data: Partial<Appointment> }) => {
-      const response = await apiRequest("PUT", `/api/admin/appointments/${id}`, data);
+      const response = await apiRequest(`/api/admin/appointments/${id}`, {
+        method: "PUT",
+        body: data,
+      });
       return await response.json();
     },
     onSuccess: () => {
@@ -59,7 +62,9 @@ export default function AdminTable() {
   // Mutation para deletar agendamento
   const deleteMutation = useMutation({
     mutationFn: async (id: number) => {
-      const response = await apiRequest("DELETE", `/api/admin/appointments/${id}`);
+      const response = await apiRequest(`/api/admin/appointments/${id}`, {
+        method: "DELETE"
+      });
       return await response.json();
     },
     onSuccess: () => {

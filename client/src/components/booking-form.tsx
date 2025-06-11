@@ -25,6 +25,18 @@ const bookingSchema = z.object({
   serviceType: z.enum(["basica", "premium"], {
     required_error: "Tipo de serviço é obrigatório",
   }),
+  serviceLocation: z.enum(["loja", "domicilio"], {
+    required_error: "Local do serviço é obrigatório",
+  }),
+  address: z.string().optional(),
+}).refine((data) => {
+  if (data.serviceLocation === "domicilio" && (!data.address || data.address.trim() === "")) {
+    return false;
+  }
+  return true;
+}, {
+  message: "Endereço é obrigatório para atendimento a domicílio",
+  path: ["address"],
 });
 
 type BookingFormData = z.infer<typeof bookingSchema>;
@@ -52,6 +64,8 @@ export default function BookingForm() {
       deviceBrand: "",
       deviceModel: "",
       serviceType: undefined,
+      serviceLocation: undefined,
+      address: "",
     },
   });
 
@@ -248,6 +262,54 @@ export default function BookingForm() {
                 <p className="text-sm text-red-600">{form.formState.errors.serviceType.message}</p>
               )}
             </div>
+
+            {/* Local do Serviço */}
+            <div className="space-y-4">
+              <Label>Local do Atendimento *</Label>
+              <RadioGroup
+                onValueChange={(value) => form.setValue("serviceLocation", value as "loja" | "domicilio")}
+                className="grid md:grid-cols-2 gap-4"
+              >
+                <div className="flex items-center space-x-2 p-4 border-2 border-border rounded-xl hover:border-primary transition-all cursor-pointer">
+                  <RadioGroupItem value="loja" id="loja" />
+                  <div className="flex-1">
+                    <Label htmlFor="loja" className="cursor-pointer">
+                      <div className="font-semibold text-foreground">Na Loja</div>
+                      <div className="text-sm text-muted-foreground">Compareça à nossa loja</div>
+                    </Label>
+                  </div>
+                </div>
+                
+                <div className="flex items-center space-x-2 p-4 border-2 border-border rounded-xl hover:border-primary transition-all cursor-pointer">
+                  <RadioGroupItem value="domicilio" id="domicilio" />
+                  <div className="flex-1">
+                    <Label htmlFor="domicilio" className="cursor-pointer">
+                      <div className="font-semibold text-foreground">A Domicílio</div>
+                      <div className="text-sm text-muted-foreground">Atendimento no seu endereço</div>
+                    </Label>
+                  </div>
+                </div>
+              </RadioGroup>
+              {form.formState.errors.serviceLocation && (
+                <p className="text-sm text-red-600">{form.formState.errors.serviceLocation.message}</p>
+              )}
+            </div>
+
+            {/* Endereço - só aparece se for domicílio */}
+            {form.watch("serviceLocation") === "domicilio" && (
+              <div className="space-y-2">
+                <Label htmlFor="address">Endereço Completo *</Label>
+                <Input
+                  id="address"
+                  {...form.register("address")}
+                  placeholder="Rua, número, bairro, cidade, CEP"
+                  className="focus:ring-2 focus:ring-primary"
+                />
+                {form.formState.errors.address && (
+                  <p className="text-sm text-red-600">{form.formState.errors.address.message}</p>
+                )}
+              </div>
+            )}
 
             <Button
               type="submit"

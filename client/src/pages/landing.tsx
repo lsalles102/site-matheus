@@ -89,8 +89,8 @@ export default function Landing() {
               </span>
             </h2>
             <p className="text-xl md:text-2xl mb-12 text-gray-light leading-relaxed max-w-3xl mx-auto">
-              Nanotecnologia avançada que oferece proteção 15x,
-              resistência superior e alta durabilidade para sua tela
+              Blindagem líquida com carbono e titânio que aumenta a resistência
+              da tela em 15x contra riscos e impactos
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Button
@@ -139,7 +139,7 @@ export default function Landing() {
                 <ul className="space-y-4 text-gray-light mb-8">
                   <li className="flex items-center text-lg">
                     <Check className="text-cyan mr-4 w-6 h-6" />
-                    Proteção contra riscos,arranhões,impactos e quedas
+                    Proteção contra riscos e impactos
                   </li>
                   <li className="flex items-center text-lg">
                     <Check className="text-cyan mr-4 w-6 h-6" />
@@ -172,7 +172,7 @@ export default function Landing() {
                 <ul className="space-y-4 text-gray-light mb-8">
                   <li className="flex items-center text-lg">
                     <Check className="text-cyan mr-4 w-6 h-6" />
-                    Proteção contra riscos,arranhões,impactos e quedas
+                    Proteção contra riscos e impactos
                   </li>
                   <li className="flex items-center text-lg">
                     <Check className="text-cyan mr-4 w-6 h-6" />

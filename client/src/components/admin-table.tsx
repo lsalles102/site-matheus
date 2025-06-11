@@ -287,10 +287,24 @@ export default function AdminTable() {
                         </div>
                       </TableCell>
                       <TableCell>
-                        <Badge variant={appointment.serviceType === "premium" ? "default" : "secondary"}>
-                          {appointment.serviceType}
-                        </Badge>
+                        <div>
+                          <Badge variant={appointment.serviceType === "premium" ? "default" : "secondary"}>
+                            {appointment.serviceType}
+                          </Badge>
+                          <p className="text-sm text-gray-500 mt-1">
+                            {appointment.serviceLocation === "domicilio" ? "A Domicílio" : "Na Loja"}
+                          </p>
+                        </div>
                       </TableCell>
+                      {appointment.serviceLocation === "domicilio" && (
+                        <TableCell>
+                          <div className="max-w-xs">
+                            <p className="text-sm text-gray-600 truncate" title={appointment.address}>
+                              {appointment.address}
+                            </p>
+                          </div>
+                        </TableCell>
+                      )}
                       <TableCell>{getStatusBadge(appointment.status)}</TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end gap-2">

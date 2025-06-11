@@ -57,6 +57,8 @@ export const appointments = pgTable("appointments", {
   deviceBrand: varchar("device_brand", { length: 100 }).notNull(),
   deviceModel: varchar("device_model", { length: 100 }).notNull(),
   serviceType: varchar("service_type", { length: 50 }).notNull(), // 'basica' or 'premium'
+  serviceLocation: varchar("service_location", { length: 20 }).notNull().default("loja"), // 'loja' or 'domicilio'
+  address: text("address"), // Required only if serviceLocation is 'domicilio'
   status: varchar("status", { length: 50 }).notNull().default("confirmado"), // confirmado, cancelado, concluido
   whatsappSent: timestamp("whatsapp_sent"),
   createdAt: timestamp("created_at").defaultNow(),
@@ -80,6 +82,19 @@ export const insertAppointmentSchema = createInsertSchema(appointments).omit({
   serviceType: z.enum(["basica", "premium"], {
     required_error: "Tipo de serviço é obrigatório",
   }),
+  serviceLocation: z.enum(["loja", "domicilio"], {
+    required_error: "Local do serviço é obrigatório",
+  }),
+  address: z.string().optional(),
+}).refine((data) => {
+  // If serviceLocation is 'domicilio', address is required
+  if (data.serviceLocation === "domicilio" && (!data.address || data.address.trim() === "")) {
+    return false;
+  }
+  return true;
+}, {
+  message: "Endereço é obrigatório para atendimento a domicílio",
+  path: ["address"],
 });
 
 export const adminLoginSchema = z.object({

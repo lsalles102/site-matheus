@@ -74,6 +74,8 @@ export class DatabaseStorage implements IStorage {
       device_brand: appointment.deviceBrand,
       device_model: appointment.deviceModel,
       service_type: appointment.serviceType,
+      service_location: appointment.serviceLocation,
+      address: appointment.address || null,
       status: 'confirmado'
     };
 
@@ -98,6 +100,8 @@ export class DatabaseStorage implements IStorage {
       deviceBrand: data.device_brand,
       deviceModel: data.device_model,
       serviceType: data.service_type,
+      serviceLocation: data.service_location,
+      address: data.address,
       status: data.status,
       whatsappSent: data.whatsapp_sent,
       createdAt: data.created_at,
@@ -151,6 +155,8 @@ export class DatabaseStorage implements IStorage {
       deviceBrand: item.device_brand,
       deviceModel: item.device_model,
       serviceType: item.service_type,
+      serviceLocation: item.service_location,
+      address: item.address,
       status: item.status,
       whatsappSent: item.whatsapp_sent,
       createdAt: item.created_at,
@@ -170,6 +176,8 @@ export class DatabaseStorage implements IStorage {
     if (data.deviceBrand !== undefined) updateData.device_brand = data.deviceBrand;
     if (data.deviceModel !== undefined) updateData.device_model = data.deviceModel;
     if (data.serviceType !== undefined) updateData.service_type = data.serviceType;
+    if (data.serviceLocation !== undefined) updateData.service_location = data.serviceLocation;
+    if (data.address !== undefined) updateData.address = data.address;
     if (data.status !== undefined) updateData.status = data.status;
     
     updateData.updated_at = new Date().toISOString();
@@ -196,6 +204,8 @@ export class DatabaseStorage implements IStorage {
       deviceBrand: result.device_brand,
       deviceModel: result.device_model,
       serviceType: result.service_type,
+      serviceLocation: result.service_location,
+      address: result.address,
       status: result.status,
       whatsappSent: result.whatsapp_sent,
       createdAt: result.created_at,

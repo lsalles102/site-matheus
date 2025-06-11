@@ -31,25 +31,19 @@ export default function Landing() {
       <header className="bg-card/90 backdrop-blur-md shadow-lg border-b border-primary/20 sticky top-0 z-40 fade-in">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center glow">
-                <Phone className="text-white w-6 h-6" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-white-pure tracking-tight">
-                  Global Tech
-                </h1>
-                <p className="text-sm text-cyan font-medium">
-                  Blindagem Líquida
-                </p>
-              </div>
+            <div className="flex items-center">
+              <img
+                src="/logo.png"
+                alt="Logo"
+                className="h-16 w-auto object-contain"
+              />
             </div>
 
             {/* Logo Central */}
             <div className="hidden md:flex items-center justify-center flex-1 mx-8">
               <img
                 src="/logo.png"
-                alt="Global Tech Logo"
+                alt="Logo"
                 className="h-24 w-auto object-contain"
               />
             </div>
@@ -86,7 +80,7 @@ export default function Landing() {
               <div className="md:hidden">
                 <img
                   src="/logo.png"
-                  alt="Global Tech Logo"
+                  alt="Logo"
                   className="h-14 w-auto object-contain"
                 />
               </div>

@@ -145,7 +145,7 @@ export class DatabaseStorage implements IStorage {
     }
     
     // Map snake_case back to camelCase for all appointments
-    return (data || []).map(item => ({
+    return (data || []).map((item: any) => ({
       id: item.id,
       name: item.name,
       phone: item.phone,

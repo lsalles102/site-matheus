@@ -163,49 +163,50 @@ export default function Landing() {
 
           <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Contact Information */}
-            <div className="space-y-8">
-              <div className="bg-background p-6 rounded-lg border border-border shadow-sm">
-                <h4 className="text-xl font-semibold text-foreground mb-4 flex items-center">
-                  <MapPin className="mr-3 text-primary w-5 h-5" />
+            <div className="space-y-8 slide-up">
+              <div className="bg-card/80 backdrop-blur-md p-8 rounded-2xl border-2 border-primary/30 shadow-lg hover:shadow-cyan/20 transition-all duration-300">
+                <h4 className="text-2xl font-bold text-white-pure mb-6 flex items-center">
+                  <MapPin className="mr-4 text-cyan w-6 h-6" />
                   Endereço
                 </h4>
-                <p className="text-muted-foreground text-lg leading-relaxed">
+                <p className="text-gray-light text-xl leading-relaxed">
                   R. Ten. Calixto, 100<br />
                   Turu, São Luís - MA<br />
                   CEP: 65066-410
                 </p>
               </div>
 
-              <div className="bg-background p-6 rounded-lg border border-border shadow-sm">
-                <h4 className="text-xl font-semibold text-foreground mb-4 flex items-center">
-                  <Phone className="mr-3 text-primary w-5 h-5" />
+              <div className="bg-card/80 backdrop-blur-md p-8 rounded-2xl border-2 border-primary/30 shadow-lg hover:shadow-cyan/20 transition-all duration-300">
+                <h4 className="text-2xl font-bold text-white-pure mb-6 flex items-center">
+                  <Phone className="mr-4 text-cyan w-6 h-6" />
                   Telefone & WhatsApp
                 </h4>
-                <p className="text-muted-foreground text-lg">
+                <p className="text-gray-light text-xl">
                   (98) 99181-9204
                 </p>
               </div>
 
-              <div className="bg-background p-6 rounded-lg border border-border shadow-sm">
-                <h4 className="text-xl font-semibold text-foreground mb-4 flex items-center">
-                  <Clock className="mr-3 text-primary w-5 h-5" />
+              <div className="bg-card/80 backdrop-blur-md p-8 rounded-2xl border-2 border-primary/30 shadow-lg hover:shadow-cyan/20 transition-all duration-300">
+                <h4 className="text-2xl font-bold text-white-pure mb-6 flex items-center">
+                  <Clock className="mr-4 text-cyan w-6 h-6" />
                   Horário de Funcionamento
                 </h4>
-                <div className="text-muted-foreground space-y-2">
-                  <p><strong>Segunda a Sexta:</strong> 9h às 18h</p>
-                  <p><strong>Sábado:</strong> 9h às 13h</p>
-                  <p><strong>Domingo:</strong> Fechado</p>
+                <div className="text-gray-light space-y-3 text-lg">
+                  <p><strong className="text-white-pure">Segunda a Sexta:</strong> 9h às 18h</p>
+                  <p><strong className="text-white-pure">Sábado:</strong> 9h às 13h</p>
+                  <p><strong className="text-white-pure">Domingo:</strong> Fechado</p>
                 </div>
               </div>
             </div>
 
             {/* Google Maps Embed */}
-            <div className="h-96 md:h-full min-h-[400px]">
+            <div className="h-96 md:h-full min-h-[400px] slide-up">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.3890324716!2d-44.2618778!3d-2.5297855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7f69a7a7a7a7a7a7%3A0x7a7a7a7a7a7a7a7a!2sR.%20Ten.%20Calixto%2C%20100%20-%20Turu%2C%20S%C3%A3o%20Lu%C3%ADs%20-%20MA%2C%2065066-410!5e0!3m2!1spt-BR!2sbr!4v1234567890123!5m2!1spt-BR!2sbr"
                 width="100%"
                 height="100%"
-                style={{ border: 0, borderRadius: '8px' }}
+                style={{ border: 0, borderRadius: '16px' }}
+                className="shadow-2xl shadow-cyan/20 border-2 border-cyan/30"
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -217,81 +218,84 @@ export default function Landing() {
       </section>
 
       {/* Booking Section */}
-      <section id="agendamento" className="py-20 bg-background">
+      <section id="agendamento" className="py-24 bg-gradient-to-b from-card to-background nano-pattern">
         <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto">
-            <div className="text-center mb-12">
-              <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-16 fade-in">
+              <h3 className="text-4xl md:text-5xl font-black text-white-pure mb-6 tracking-tight">
                 Agende Seu Atendimento
               </h3>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-xl text-gray-light leading-relaxed">
                 Preencha o formulário e receba confirmação via WhatsApp
               </p>
             </div>
 
-            <BookingForm />
+            <div className="slide-up">
+              <BookingForm />
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-secondary text-foreground py-16 border-t border-border">
+      <footer className="bg-gradient-to-t from-dark-blue to-card text-white-pure py-20 border-t border-cyan/30">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                  <Phone className="text-white w-5 h-5" />
+          <div className="grid md:grid-cols-4 gap-10">
+            <div className="fade-in">
+              <div className="flex items-center space-x-4 mb-8">
+                <div className="w-12 h-12 bg-gradient-to-br from-cyan to-primary rounded-xl flex items-center justify-center glow">
+                  <Phone className="text-white w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-foreground">Global Tech</h4>
-                  <p className="text-muted-foreground">Blindagem Líquida</p>
+                  <h4 className="text-2xl font-bold text-white-pure">Global Tech</h4>
+                  <p className="text-cyan font-medium">Blindagem Líquida</p>
                 </div>
               </div>
-              <p className="text-muted-foreground">
+              <p className="text-gray-light text-lg leading-relaxed">
                 Protegendo seus dispositivos com a mais avançada tecnologia de nanotecnologia.
               </p>
             </div>
 
-            <div>
-              <h5 className="font-semibold mb-4 text-foreground">Serviços</h5>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>Blindagem Básica</li>
-                <li>Blindagem Premium</li>
-                <li>Garantia Estendida</li>
-                <li>Suporte Técnico</li>
+            <div className="fade-in">
+              <h5 className="font-bold mb-6 text-white-pure text-xl">Serviços</h5>
+              <ul className="space-y-3 text-gray-light text-lg">
+                <li className="hover:text-cyan transition-colors">Blindagem Básica</li>
+                <li className="hover:text-cyan transition-colors">Blindagem Premium</li>
+                <li className="hover:text-cyan transition-colors">Garantia Estendida</li>
+                <li className="hover:text-cyan transition-colors">Suporte Técnico</li>
               </ul>
             </div>
 
-            <div>
-              <h5 className="font-semibold mb-4 text-foreground">Contato</h5>
-              <ul className="space-y-2 text-muted-foreground">
-                <li className="flex items-center">
-                  <Phone className="mr-2 w-4 h-4" /> (98) 99181-9204
+            <div className="fade-in">
+              <h5 className="font-bold mb-6 text-white-pure text-xl">Contato</h5>
+              <ul className="space-y-4 text-gray-light text-lg">
+                <li className="flex items-center hover:text-cyan transition-colors">
+                  <Phone className="mr-3 w-5 h-5 text-cyan" /> (98) 99181-9204
                 </li>
-                <li className="flex items-center">
-                  <Mail className="mr-2 w-4 h-4" /> contato@globaltech.com
+                <li className="flex items-center hover:text-cyan transition-colors">
+                  <Mail className="mr-3 w-5 h-5 text-cyan" /> contato@globaltech.com
                 </li>
-                <li className="flex items-center">
-                  <MapPin className="mr-2 w-4 h-4" /> Turu, São Luís - MA
+                <li className="flex items-center hover:text-cyan transition-colors">
+                  <MapPin className="mr-3 w-5 h-5 text-cyan" /> Turu, São Luís - MA
                 </li>
               </ul>
             </div>
 
-            <div>
-              <h5 className="font-semibold mb-4 text-foreground">Horário de Funcionamento</h5>
-              <ul className="space-y-2 text-muted-foreground">
+            <div className="fade-in">
+              <h5 className="font-bold mb-6 text-white-pure text-xl">Horário de Funcionamento</h5>
+              <ul className="space-y-3 text-gray-light text-lg">
                 <li className="flex items-center">
-                  <Clock className="mr-2 w-4 h-4" /> Segunda - Sexta: 9h às 18h
+                  <Clock className="mr-3 w-5 h-5 text-cyan" /> 
+                  <span><strong className="text-white-pure">Segunda - Sexta:</strong> 9h às 18h</span>
                 </li>
-                <li>Sábado: 9h às 13h</li>
-                <li>Domingo: Fechado</li>
+                <li><strong className="text-white-pure">Sábado:</strong> 9h às 13h</li>
+                <li><strong className="text-white-pure">Domingo:</strong> Fechado</li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-border mt-12 pt-8 text-center text-muted-foreground">
-            <p>&copy; 2024 Global Tech. Todos os direitos reservados.</p>
+          <div className="border-t border-cyan/30 mt-16 pt-8 text-center text-gray-light">
+            <p className="text-lg">&copy; 2024 Global Tech. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>

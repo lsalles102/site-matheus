@@ -1,7 +1,4 @@
 import { 
-  users, 
-  appointments,
-  adminUsers,
   type User, 
   type UpsertUser, 
   type Appointment, 
@@ -9,8 +6,7 @@ import {
   type AdminUser,
   type InsertAdminUser
 } from "@shared/schema";
-import { db } from "./db";
-import { eq, ilike, and, or, desc } from "drizzle-orm";
+import { supabase } from "./db";
 import bcrypt from "bcryptjs";
 
 export interface IStorage {
@@ -39,32 +35,46 @@ export interface IStorage {
 export class DatabaseStorage implements IStorage {
   // User operations for Replit Auth
   async getUser(id: string): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.id, id));
-    return user;
+    const { data, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', id)
+      .single();
+    
+    if (error && error.code !== 'PGRST116') {
+      throw error;
+    }
+    
+    return data || undefined;
   }
 
   async upsertUser(userData: UpsertUser): Promise<User> {
-    const [user] = await db
-      .insert(users)
-      .values(userData)
-      .onConflictDoUpdate({
-        target: users.id,
-        set: {
-          ...userData,
-          updatedAt: new Date(),
-        },
-      })
-      .returning();
-    return user;
+    const { data, error } = await supabase
+      .from('users')
+      .upsert(userData, { onConflict: 'id' })
+      .select()
+      .single();
+    
+    if (error) {
+      throw error;
+    }
+    
+    return data;
   }
 
   // Appointment operations
   async createAppointment(appointment: InsertAppointment): Promise<Appointment> {
-    const [result] = await db
-      .insert(appointments)
-      .values(appointment)
-      .returning();
-    return result;
+    const { data, error } = await supabase
+      .from('appointments')
+      .insert(appointment)
+      .select()
+      .single();
+    
+    if (error) {
+      throw error;
+    }
+    
+    return data;
   }
 
   async getAppointments(filters: {
@@ -73,97 +83,139 @@ export class DatabaseStorage implements IStorage {
     date?: string;
     status?: string;
   }): Promise<Appointment[]> {
-    let query = db.select().from(appointments);
-    
-    const conditions = [];
-    
+    let query = supabase
+      .from('appointments')
+      .select('*');
+
+    // Apply filters
     if (filters.search) {
-      conditions.push(
-        or(
-          ilike(appointments.name, `%${filters.search}%`),
-          ilike(appointments.phone, `%${filters.search}%`),
-          ilike(appointments.email, `%${filters.search}%`)
-        )
-      );
+      query = query.or(`name.ilike.%${filters.search}%,phone.ilike.%${filters.search}%,email.ilike.%${filters.search}%`);
     }
-    
+
     if (filters.brand) {
-      conditions.push(eq(appointments.deviceBrand, filters.brand));
+      query = query.eq('device_brand', filters.brand);
     }
-    
+
     if (filters.date) {
-      conditions.push(eq(appointments.appointmentDate, filters.date));
+      query = query.eq('appointment_date', filters.date);
     }
-    
+
     if (filters.status) {
-      conditions.push(eq(appointments.status, filters.status));
+      query = query.eq('status', filters.status);
+    }
+
+    query = query.order('created_at', { ascending: false });
+
+    const { data, error } = await query;
+    
+    if (error) {
+      throw error;
     }
     
-    if (conditions.length > 0) {
-      query = query.where(and(...conditions));
-    }
-    
-    const results = await query.orderBy(desc(appointments.createdAt));
-    return results;
+    return data || [];
   }
 
   async updateAppointment(id: number, data: Partial<Appointment>): Promise<Appointment | undefined> {
-    const [result] = await db
-      .update(appointments)
-      .set({ ...data, updatedAt: new Date() })
-      .where(eq(appointments.id, id))
-      .returning();
+    const { data: result, error } = await supabase
+      .from('appointments')
+      .update(data)
+      .eq('id', id)
+      .select()
+      .single();
+    
+    if (error) {
+      throw error;
+    }
+    
     return result;
   }
 
   async deleteAppointment(id: number): Promise<boolean> {
-    const result = await db
-      .delete(appointments)
-      .where(eq(appointments.id, id));
-    return (result.rowCount || 0) > 0;
+    const { error } = await supabase
+      .from('appointments')
+      .delete()
+      .eq('id', id);
+    
+    if (error) {
+      throw error;
+    }
+    
+    return true;
   }
 
   async markWhatsAppSent(id: number): Promise<void> {
-    await db
-      .update(appointments)
-      .set({ whatsappSent: new Date() })
-      .where(eq(appointments.id, id));
+    const { error } = await supabase
+      .from('appointments')
+      .update({ whatsapp_sent: new Date().toISOString() })
+      .eq('id', id);
+    
+    if (error) {
+      throw error;
+    }
   }
 
   // Admin operations
   async createAdminUser(adminData: { username: string; password: string }): Promise<AdminUser> {
-    const hashedPassword = await bcrypt.hash(adminData.password, 12);
-    const [result] = await db
-      .insert(adminUsers)
-      .values({
+    const hashedPassword = await bcrypt.hash(adminData.password, 10);
+    
+    const { data, error } = await supabase
+      .from('admin_users')
+      .insert({
         username: adminData.username,
-        passwordHash: hashedPassword,
+        password_hash: hashedPassword,
+        role: 'admin'
       })
-      .returning();
-    return result;
+      .select()
+      .single();
+    
+    if (error) {
+      throw error;
+    }
+    
+    return data;
   }
 
   async validateAdminLogin(username: string, password: string): Promise<AdminUser | null> {
-    const [admin] = await db
-      .select()
-      .from(adminUsers)
-      .where(eq(adminUsers.username, username));
+    const { data: admin, error } = await supabase
+      .from('admin_users')
+      .select('*')
+      .eq('username', username)
+      .single();
     
-    if (!admin) {
+    if (error || !admin) {
       return null;
     }
 
-    const isValid = await bcrypt.compare(password, admin.passwordHash);
+    const isValid = await bcrypt.compare(password, admin.password_hash);
+    
     return isValid ? admin : null;
   }
 
   async getAdminUser(id: number): Promise<AdminUser | undefined> {
-    const [admin] = await db
-      .select()
-      .from(adminUsers)
-      .where(eq(adminUsers.id, id));
-    return admin;
+    const { data, error } = await supabase
+      .from('admin_users')
+      .select('*')
+      .eq('id', id)
+      .single();
+    
+    if (error && error.code !== 'PGRST116') {
+      throw error;
+    }
+    
+    return data || undefined;
   }
 }
 
 export const storage = new DatabaseStorage();
+
+// Note: Supabase table names use snake_case, so we need to map between camelCase and snake_case
+// The field mappings are:
+// appointmentDate -> appointment_date
+// appointmentTime -> appointment_time
+// deviceBrand -> device_brand
+// deviceModel -> device_model
+// serviceType -> service_type
+// whatsappSent -> whatsapp_sent
+// createdAt -> created_at
+// updatedAt -> updated_at
+// passwordHash -> password_hash

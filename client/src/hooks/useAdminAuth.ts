@@ -48,7 +48,7 @@ export function useAdminAuth() {
   const isAuthenticated = !!admin && !error;
 
   return {
-    admin: admin?.admin,
+    admin: admin?.admin || null,
     isLoading,
     isAuthenticated,
     logout,

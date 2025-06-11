@@ -74,7 +74,7 @@ export class DatabaseStorage implements IStorage {
       device_brand: appointment.deviceBrand,
       device_model: appointment.deviceModel,
       service_type: appointment.serviceType,
-      status: appointment.status || 'confirmado'
+      status: 'confirmado'
     };
 
     const { data, error } = await supabase

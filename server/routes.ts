@@ -1,0 +1,127 @@
+import type { Express } from "express";
+import { createServer, type Server } from "http";
+import { storage } from "./storage";
+import { setupAuth, isAuthenticated } from "./replitAuth";
+import { insertAppointmentSchema } from "@shared/schema";
+import { z } from "zod";
+
+export async function registerRoutes(app: Express): Promise<Server> {
+  // Auth middleware
+  await setupAuth(app);
+
+  // Auth routes
+  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      res.json(user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      res.status(500).json({ message: "Failed to fetch user" });
+    }
+  });
+
+  // Public booking endpoint
+  app.post("/api/appointments", async (req, res) => {
+    try {
+      const validatedData = insertAppointmentSchema.parse(req.body);
+      const appointment = await storage.createAppointment(validatedData);
+      
+      // Send WhatsApp confirmation (in production, integrate with WhatsApp API)
+      const whatsappMessage = `Olá ${appointment.name}, seu agendamento foi confirmado para ${appointment.appointmentDate} às ${appointment.appointmentTime}. Obrigado pela confiança na Global Tech!`;
+      console.log("WhatsApp message to send:", whatsappMessage);
+      
+      await storage.markWhatsAppSent(appointment.id);
+      
+      res.json({ 
+        success: true, 
+        appointment,
+        message: "Agendamento criado com sucesso! Você receberá uma confirmação via WhatsApp em breve."
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ 
+          message: "Dados inválidos", 
+          errors: error.errors 
+        });
+      } else {
+        console.error("Error creating appointment:", error);
+        res.status(500).json({ message: "Erro interno do servidor" });
+      }
+    }
+  });
+
+  // Protected admin routes
+  app.get("/api/admin/appointments", isAuthenticated, async (req, res) => {
+    try {
+      const { search, brand, date, status } = req.query;
+      const appointments = await storage.getAppointments({
+        search: search as string,
+        brand: brand as string,
+        date: date as string,
+        status: status as string,
+      });
+      res.json(appointments);
+    } catch (error) {
+      console.error("Error fetching appointments:", error);
+      res.status(500).json({ message: "Failed to fetch appointments" });
+    }
+  });
+
+  app.put("/api/admin/appointments/:id", isAuthenticated, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const updateData = req.body;
+      const appointment = await storage.updateAppointment(id, updateData);
+      
+      if (!appointment) {
+        return res.status(404).json({ message: "Agendamento não encontrado" });
+      }
+      
+      res.json(appointment);
+    } catch (error) {
+      console.error("Error updating appointment:", error);
+      res.status(500).json({ message: "Failed to update appointment" });
+    }
+  });
+
+  app.delete("/api/admin/appointments/:id", isAuthenticated, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const success = await storage.deleteAppointment(id);
+      
+      if (!success) {
+        return res.status(404).json({ message: "Agendamento não encontrado" });
+      }
+      
+      res.json({ success: true, message: "Agendamento excluído com sucesso" });
+    } catch (error) {
+      console.error("Error deleting appointment:", error);
+      res.status(500).json({ message: "Failed to delete appointment" });
+    }
+  });
+
+  app.get("/api/admin/appointments/export", isAuthenticated, async (req, res) => {
+    try {
+      const appointments = await storage.getAppointments({});
+      
+      // Create CSV content
+      const csvHeader = "Nome,Telefone,Email,Data,Horário,Marca,Modelo,Serviço,Status,Criado em\n";
+      const csvRows = appointments.map(apt => 
+        `"${apt.name}","${apt.phone}","${apt.email}","${apt.appointmentDate}","${apt.appointmentTime}","${apt.deviceBrand}","${apt.deviceModel}","${apt.serviceType}","${apt.status}","${apt.createdAt}"`
+      ).join("\n");
+      
+      const csv = csvHeader + csvRows;
+      
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', 'attachment; filename="agendamentos.csv"');
+      res.send(csv);
+    } catch (error) {
+      console.error("Error exporting appointments:", error);
+      res.status(500).json({ message: "Failed to export appointments" });
+    }
+  });
+
+  const httpServer = createServer(app);
+  return httpServer;
+}

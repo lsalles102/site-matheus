@@ -44,16 +44,16 @@ export default function Landing() {
                 </p>
               </div>
             </div>
-            
+
             {/* Logo Central */}
             <div className="hidden md:flex items-center justify-center flex-1 mx-8">
-              <img 
-                src="/logo.png" 
-                alt="Global Tech Logo" 
+              <img
+                src="/logo.png"
+                alt="Global Tech Logo"
                 className="h-24 w-auto object-contain"
               />
             </div>
-            
+
             <nav className="hidden md:flex space-x-8">
               <a
                 href="#home"
@@ -80,21 +80,31 @@ export default function Landing() {
                 Contato
               </a>
             </nav>
-            
+
             <div className="flex items-center space-x-4">
               {/* Logo Mobile */}
               <div className="md:hidden">
-                <img 
-                  src="/logo.png" 
-                  alt="Global Tech Logo" 
+                <img
+                  src="/logo.png"
+                  alt="Global Tech Logo"
                   className="h-14 w-auto object-contain"
                 />
               </div>
-              
+
               {/* Mobile Menu Button */}
               <button className="md:hidden p-2 text-gray-light hover:text-cyan transition-colors">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 </svg>
               </button>
             </div>
@@ -133,7 +143,9 @@ export default function Landing() {
                 variant="outline"
                 size="lg"
                 className="border-2 border-cyan text-cyan hover:bg-cyan hover:text-dark-blue px-8 sm:px-10 py-4 sm:py-5 text-lg sm:text-xl font-bold transition-all duration-300 w-full sm:w-auto"
-                onClick={() => window.open("https://wa.me/5598991819204", "_blank")}
+                onClick={() =>
+                  window.open("https://wa.me/5598991819204", "_blank")
+                }
               >
                 <Phone className="mr-2 sm:mr-3 h-5 w-5 sm:h-6 sm:w-6" />
                 WhatsApp
@@ -144,7 +156,10 @@ export default function Landing() {
       </section>
 
       {/* Services Section */}
-      <section id="servicos" className="py-16 md:py-24 bg-card/50 backdrop-blur-sm">
+      <section
+        id="servicos"
+        className="py-16 md:py-24 bg-card/50 backdrop-blur-sm"
+      >
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 md:mb-20 fade-in">
             <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-white-pure mb-4 md:mb-6 tracking-tight">
@@ -286,7 +301,9 @@ export default function Landing() {
                   <Phone className="mr-3 md:mr-4 text-cyan w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
                   Telefone & WhatsApp
                 </h4>
-                <p className="text-gray-light text-lg md:text-xl">(98) 99181-9204</p>
+                <p className="text-gray-light text-lg md:text-xl">
+                  (98) 99181-9204
+                </p>
               </div>
 
               <div className="bg-card/80 backdrop-blur-md p-6 md:p-8 rounded-2xl border-2 border-primary/30 shadow-lg hover:shadow-cyan/20 transition-all duration-300">

@@ -1,10 +1,14 @@
-import type { Express } from "express";
+import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { setupAuth, isAuthenticated } from "./replitAuth";
 import { insertAppointmentSchema, adminLoginSchema } from "@shared/schema";
 import { z } from "zod";
-import session from "express-session";
+
+
+interface AuthenticatedRequest extends Request {
+  session: Request['session'] & { adminId?: number };
+}
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Auth middleware
@@ -53,7 +57,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Admin authentication middleware
-  const requireAdminAuth = (req: any, res: any, next: any) => {
+  const requireAdminAuth = (req: AuthenticatedRequest, res: Response, next: any) => {
     if (!req.session.adminId) {
       return res.status(401).json({ message: "Acesso negado. Faça login como administrador." });
     }
@@ -61,7 +65,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   };
 
   // Admin login
-  app.post("/api/admin/login", async (req, res) => {
+  app.post("/api/admin/login", async (req: AuthenticatedRequest, res) => {
     try {
       const validatedData = adminLoginSchema.parse(req.body);
       const admin = await storage.validateAdminLogin(validatedData.username, validatedData.password);
@@ -100,7 +104,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Check admin authentication status
-  app.get("/api/admin/me", async (req: any, res) => {
+  app.get("/api/admin/me", async (req: AuthenticatedRequest, res) => {
     if (!req.session.adminId) {
       return res.status(401).json({ message: "Não autenticado" });
     }

@@ -128,11 +128,11 @@ export default function Landing() {
           <div className="max-w-5xl mx-auto text-center slide-up">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 md:mb-8 leading-tight tracking-tight">
               <span className="text-cyan glow">
-                Conheça a blindagem líquida de carbono e tintânio
+                Conheça a blindagem liquida de carbono e tintânio
               </span>
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl mb-8 md:mb-12 text-gray-light leading-relaxed max-w-3xl mx-auto px-4">
-              Blindagem líquida de carbono e titânio que aumenta a resistêcia da
+              Blindagem liquida de carbono e titânio que aumenta a resistêcia da
               tela em 15x contra riscos e impactos!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4">
@@ -269,98 +269,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Demonstration GIFs Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-b from-card/20 to-background/50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 md:mb-16 fade-in">
-            <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-white-pure mb-4 md:mb-6 tracking-tight">
-              Veja a Blindagem em Ação
-            </h3>
-            <p className="text-lg sm:text-xl text-gray-light leading-relaxed px-4">
-              Demonstrações reais da eficácia da nossa tecnologia de proteção
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
-            {/* Demonstração 1 */}
-            <div className="slide-up">
-              <Card className="bg-card/80 backdrop-blur-md hover:shadow-2xl hover:shadow-cyan/20 transition-all duration-500 border-2 border-primary/30 hover:border-cyan overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="relative aspect-video bg-gradient-to-br from-dark-blue/50 to-primary/30 flex items-center justify-center border-b-2 border-cyan/30">
-                    {/* Placeholder para GIF 1 */}
-                    <div className="text-center">
-                      <div className="w-20 h-20 bg-gradient-to-br from-cyan/30 to-primary/30 rounded-full flex items-center justify-center mb-4 mx-auto glow">
-                        <Shield className="text-cyan w-10 h-10" />
-                      </div>
-                      <p className="text-white-pure font-semibold text-lg mb-2">
-                        Demonstração 1
-                      </p>
-                      <p className="text-gray-light text-sm px-4">
-                        Adicione aqui o GIF mostrando a aplicação da blindagem
-                      </p>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <h4 className="text-xl md:text-2xl font-bold text-white-pure mb-3">
-                      Processo de Aplicação
-                    </h4>
-                    <p className="text-gray-light leading-relaxed">
-                      Veja como aplicamos a blindagem líquida de carbono e titânio em tempo real. 
-                      O processo é rápido, limpo e totalmente invisível.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Demonstração 2 */}
-            <div className="slide-up">
-              <Card className="bg-card/80 backdrop-blur-md hover:shadow-2xl hover:shadow-cyan/20 transition-all duration-500 border-2 border-primary/30 hover:border-cyan overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="relative aspect-video bg-gradient-to-br from-dark-blue/50 to-primary/30 flex items-center justify-center border-b-2 border-cyan/30">
-                    {/* Placeholder para GIF 2 */}
-                    <div className="text-center">
-                      <div className="w-20 h-20 bg-gradient-to-br from-cyan/30 to-primary/30 rounded-full flex items-center justify-center mb-4 mx-auto glow">
-                        <Check className="text-cyan w-10 h-10" />
-                      </div>
-                      <p className="text-white-pure font-semibold text-lg mb-2">
-                        Demonstração 2
-                      </p>
-                      <p className="text-gray-light text-sm px-4">
-                        Adicione aqui o GIF mostrando o teste de resistência
-                      </p>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <h4 className="text-xl md:text-2xl font-bold text-white-pure mb-3">
-                      Teste de Resistência
-                    </h4>
-                    <p className="text-gray-light leading-relaxed">
-                      Demonstração da eficácia da proteção contra riscos e impactos. 
-                      Veja a diferença entre telas protegidas e desprotegidas.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-
-          <div className="text-center mt-12 fade-in">
-            <p className="text-gray-light text-lg mb-6">
-              Interessado em proteger seu dispositivo?
-            </p>
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-cyan to-primary hover:from-primary hover:to-cyan text-dark-blue px-8 py-4 text-lg font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 glow"
-              onClick={scrollToBooking}
-            >
-              <Calendar className="mr-3 h-6 w-6" />
-              Agendar Demonstração
-            </Button>
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials Section */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-card/30 to-background">
         <div className="container mx-auto px-4">
@@ -380,18 +288,13 @@ export default function Landing() {
                 <div className="flex items-center mb-4">
                   <div className="flex space-x-1">
                     {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-5 h-5 text-yellow-400 fill-current"
-                      />
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                     ))}
                   </div>
                 </div>
                 <Quote className="text-cyan/50 w-8 h-8 mb-4" />
                 <p className="text-gray-light text-base md:text-lg mb-6 leading-relaxed">
-                  "Excelente serviço! Meu iPhone estava com a tela toda riscada
-                  e após a aplicação da blindagem líquida ficou perfeito.
-                  Recomendo muito!"
+                  "Excelente serviço! Meu iPhone estava com a tela toda riscada e após a aplicação da blindagem líquida ficou perfeito. Recomendo muito!"
                 </p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-cyan to-primary rounded-full flex items-center justify-center mr-4">
@@ -411,18 +314,13 @@ export default function Landing() {
                 <div className="flex items-center mb-4">
                   <div className="flex space-x-1">
                     {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-5 h-5 text-yellow-400 fill-current"
-                      />
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                     ))}
                   </div>
                 </div>
                 <Quote className="text-cyan/50 w-8 h-8 mb-4" />
                 <p className="text-gray-light text-base md:text-lg mb-6 leading-relaxed">
-                  "Atendimento nota 10! O pessoal é muito atencioso e o
-                  resultado da blindagem superou minhas expectativas. Meu
-                  Samsung está protegido."
+                  "Atendimento nota 10! O pessoal é muito atencioso e o resultado da blindagem superou minhas expectativas. Meu Samsung está protegido."
                 </p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-cyan to-primary rounded-full flex items-center justify-center mr-4">
@@ -442,27 +340,20 @@ export default function Landing() {
                 <div className="flex items-center mb-4">
                   <div className="flex space-x-1">
                     {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-5 h-5 text-yellow-400 fill-current"
-                      />
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                     ))}
                   </div>
                 </div>
                 <Quote className="text-cyan/50 w-8 h-8 mb-4" />
                 <p className="text-gray-light text-base md:text-lg mb-6 leading-relaxed">
-                  "Já é a segunda vez que venho aqui. Primeira vez foi no meu
-                  celular, agora trouxe o da minha esposa. Serviço de
-                  qualidade!"
+                  "Já é a segunda vez que venho aqui. Primeira vez foi no meu celular, agora trouxe o da minha esposa. Serviço de qualidade!"
                 </p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-cyan to-primary rounded-full flex items-center justify-center mr-4">
                     <span className="text-white font-bold text-lg">R</span>
                   </div>
                   <div>
-                    <p className="text-white-pure font-semibold">
-                      Roberto Lima
-                    </p>
+                    <p className="text-white-pure font-semibold">Roberto Lima</p>
                     <p className="text-cyan text-sm">Cliente Fidelizado</p>
                   </div>
                 </div>
@@ -475,27 +366,20 @@ export default function Landing() {
                 <div className="flex items-center mb-4">
                   <div className="flex space-x-1">
                     {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-5 h-5 text-yellow-400 fill-current"
-                      />
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                     ))}
                   </div>
                 </div>
                 <Quote className="text-cyan/50 w-8 h-8 mb-4" />
                 <p className="text-gray-light text-base md:text-lg mb-6 leading-relaxed">
-                  "Trabalho na construção e meu celular sofre muito. Depois da
-                  blindagem líquida, não tenho mais problemas com riscos na
-                  tela."
+                  "Trabalho na construção e meu celular sofre muito. Depois da blindagem líquida, não tenho mais problemas com riscos na tela."
                 </p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-cyan to-primary rounded-full flex items-center justify-center mr-4">
                     <span className="text-white font-bold text-lg">C</span>
                   </div>
                   <div>
-                    <p className="text-white-pure font-semibold">
-                      Carlos Ferreira
-                    </p>
+                    <p className="text-white-pure font-semibold">Carlos Ferreira</p>
                     <p className="text-cyan text-sm">Motorola Edge 30</p>
                   </div>
                 </div>
@@ -508,17 +392,13 @@ export default function Landing() {
                 <div className="flex items-center mb-4">
                   <div className="flex space-x-1">
                     {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-5 h-5 text-yellow-400 fill-current"
-                      />
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                     ))}
                   </div>
                 </div>
                 <Quote className="text-cyan/50 w-8 h-8 mb-4" />
                 <p className="text-gray-light text-base md:text-lg mb-6 leading-relaxed">
-                  "Fiquei impressionada com a tecnologia! Não dá para ver que
-                  tem alguma proteção aplicada, mas funciona perfeitamente."
+                  "Fiquei impressionada com a tecnologia! Não dá para ver que tem alguma proteção aplicada, mas funciona perfeitamente."
                 </p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-cyan to-primary rounded-full flex items-center justify-center mr-4">
@@ -538,26 +418,20 @@ export default function Landing() {
                 <div className="flex items-center mb-4">
                   <div className="flex space-x-1">
                     {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-5 h-5 text-yellow-400 fill-current"
-                      />
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                     ))}
                   </div>
                 </div>
                 <Quote className="text-cyan/50 w-8 h-8 mb-4" />
                 <p className="text-gray-light text-base md:text-lg mb-6 leading-relaxed">
-                  "Preço justo e resultado excelente. Meu Xiaomi estava com
-                  micro riscos que me incomodavam muito. Agora está novinho!"
+                  "Preço justo e resultado excelente. Meu Xiaomi estava com micro riscos que me incomodavam muito. Agora está novinho!"
                 </p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-gradient-to-br from-cyan to-primary rounded-full flex items-center justify-center mr-4">
                     <span className="text-white font-bold text-lg">P</span>
                   </div>
                   <div>
-                    <p className="text-white-pure font-semibold">
-                      Pedro Oliveira
-                    </p>
+                    <p className="text-white-pure font-semibold">Pedro Oliveira</p>
                     <p className="text-cyan text-sm">Xiaomi Mi 11</p>
                   </div>
                 </div>

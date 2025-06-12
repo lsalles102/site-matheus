@@ -269,6 +269,40 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Video Demonstration Section */}
+      <section className="py-16 md:py-24 bg-gradient-to-b from-card/50 to-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12 md:mb-20 fade-in">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-white-pure mb-4 md:mb-6 tracking-tight">
+              Veja a Blindagem em Ação
+            </h3>
+            <p className="text-lg sm:text-xl text-gray-light leading-relaxed px-4 max-w-3xl mx-auto">
+              Demonstração completa de como aplicamos a blindagem líquida de carbono e titânio no seu dispositivo
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-cyan/20 border-2 border-cyan/30 hover:border-cyan transition-all duration-300">
+              <iframe
+                src="https://vioo.cc/v/4KRm"
+                width="100%"
+                height="100%"
+                className="absolute inset-0"
+                allowFullScreen
+                title="Demonstração da Blindagem Líquida de Carbono e Titânio"
+                loading="lazy"
+              />
+            </div>
+            
+            <div className="text-center mt-8">
+              <p className="text-gray-light text-base md:text-lg leading-relaxed">
+                Processo completo de aplicação da blindagem líquida em alta definição
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-card/30 to-background">
         <div className="container mx-auto px-4">

@@ -20,7 +20,7 @@ export default function Landing() {
   const [showBooking, setShowBooking] = useState(false);
   
   // Detectar região da loja (pode ser baseado em URL, localStorage, etc.)
-  const regionKey = new URLSearchParams(window.location.search).get('region') || 'sao-paulo';
+  const regionKey = new URLSearchParams(window.location.search).get('region') || 'sao-luis';
   const storeConfig = getStoreConfig(regionKey);
   const seoContent = generateSEOContent(storeConfig);
 

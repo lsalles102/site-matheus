@@ -11,7 +11,7 @@ export default function Admin() {
   const { admin, isLoading, isAuthenticated, logout } = useAdminAuth();
   const [, navigate] = useLocation();
   
-  const regionKey = new URLSearchParams(window.location.search).get('region') || 'sao-paulo';
+  const regionKey = new URLSearchParams(window.location.search).get('region') || 'sao-luis';
   const storeConfig = getStoreConfig(regionKey);
   const seoContent = generateSEOContent(storeConfig);
 

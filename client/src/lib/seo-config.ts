@@ -14,20 +14,29 @@ export interface StoreRegionConfig {
 
 // Configuração padrão - pode ser alterada baseada na região detectada ou configuração do usuário
 export const defaultStoreConfig: StoreRegionConfig = {
-  region: "SP",
-  city: "São Paulo",
-  state: "São Paulo",
-  businessName: "TechRepair SP",
-  phone: "(11) 99999-9999",
-  address: "Rua da Tecnologia, 123 - Centro, São Paulo - SP",
+  region: "MA",
+  city: "São Luís",
+  state: "Maranhão",
+  businessName: "Global Tech",
+  phone: "(98) 99181-9204",
+  address: "Turu, São Luís - MA",
   coordinates: {
-    latitude: -23.5505,
-    longitude: -46.6333
+    latitude: -2.5387,
+    longitude: -44.2825
   }
 };
 
 // Configurações específicas para diferentes regiões
 export const regionConfigs: Record<string, StoreRegionConfig> = {
+  "sao-luis": {
+    region: "MA",
+    city: "São Luís",
+    state: "Maranhão", 
+    businessName: "Global Tech",
+    phone: "(98) 99181-9204",
+    address: "Turu, São Luís - MA",
+    coordinates: { latitude: -2.5387, longitude: -44.2825 }
+  },
   "sao-paulo": {
     region: "SP",
     city: "São Paulo",

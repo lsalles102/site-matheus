@@ -10,6 +10,8 @@ import {
   MapPin,
   Calendar,
   Clock,
+  Star,
+  Quote,
 } from "lucide-react";
 import BookingForm from "@/components/booking-form";
 import WhatsAppButton from "@/components/whatsapp-button";

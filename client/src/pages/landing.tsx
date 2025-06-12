@@ -269,6 +269,178 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="py-16 md:py-24 bg-gradient-to-b from-card/30 to-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12 md:mb-20 fade-in">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl font-black text-white-pure mb-4 md:mb-6 tracking-tight">
+              O que nossos clientes dizem
+            </h3>
+            <p className="text-lg sm:text-xl text-gray-light leading-relaxed px-4">
+              Depoimentos reais de quem já protegeu seus dispositivos conosco
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
+            {/* Testemunho 1 */}
+            <Card className="bg-card/80 backdrop-blur-md hover:shadow-2xl hover:shadow-cyan/20 transition-all duration-500 border-2 border-primary/30 hover:border-cyan slide-up">
+              <CardContent className="p-6 md:p-8">
+                <div className="flex items-center mb-4">
+                  <div className="flex space-x-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                </div>
+                <Quote className="text-cyan/50 w-8 h-8 mb-4" />
+                <p className="text-gray-light text-base md:text-lg mb-6 leading-relaxed">
+                  "Excelente serviço! Meu iPhone estava com a tela toda riscada e após a aplicação da blindagem líquida ficou perfeito. Recomendo muito!"
+                </p>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-cyan to-primary rounded-full flex items-center justify-center mr-4">
+                    <span className="text-white font-bold text-lg">M</span>
+                  </div>
+                  <div>
+                    <p className="text-white-pure font-semibold">Maria Silva</p>
+                    <p className="text-cyan text-sm">iPhone 13 Pro</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Testemunho 2 */}
+            <Card className="bg-card/80 backdrop-blur-md hover:shadow-2xl hover:shadow-cyan/20 transition-all duration-500 border-2 border-primary/30 hover:border-cyan slide-up">
+              <CardContent className="p-6 md:p-8">
+                <div className="flex items-center mb-4">
+                  <div className="flex space-x-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                </div>
+                <Quote className="text-cyan/50 w-8 h-8 mb-4" />
+                <p className="text-gray-light text-base md:text-lg mb-6 leading-relaxed">
+                  "Atendimento nota 10! O pessoal é muito atencioso e o resultado da blindagem superou minhas expectativas. Meu Samsung está protegido."
+                </p>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-cyan to-primary rounded-full flex items-center justify-center mr-4">
+                    <span className="text-white font-bold text-lg">J</span>
+                  </div>
+                  <div>
+                    <p className="text-white-pure font-semibold">João Santos</p>
+                    <p className="text-cyan text-sm">Samsung Galaxy S23</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Testemunho 3 */}
+            <Card className="bg-card/80 backdrop-blur-md hover:shadow-2xl hover:shadow-cyan/20 transition-all duration-500 border-2 border-primary/30 hover:border-cyan slide-up">
+              <CardContent className="p-6 md:p-8">
+                <div className="flex items-center mb-4">
+                  <div className="flex space-x-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                </div>
+                <Quote className="text-cyan/50 w-8 h-8 mb-4" />
+                <p className="text-gray-light text-base md:text-lg mb-6 leading-relaxed">
+                  "Já é a segunda vez que venho aqui. Primeira vez foi no meu celular, agora trouxe o da minha esposa. Serviço de qualidade!"
+                </p>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-cyan to-primary rounded-full flex items-center justify-center mr-4">
+                    <span className="text-white font-bold text-lg">R</span>
+                  </div>
+                  <div>
+                    <p className="text-white-pure font-semibold">Roberto Lima</p>
+                    <p className="text-cyan text-sm">Cliente Fidelizado</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Testemunho 4 */}
+            <Card className="bg-card/80 backdrop-blur-md hover:shadow-2xl hover:shadow-cyan/20 transition-all duration-500 border-2 border-primary/30 hover:border-cyan slide-up">
+              <CardContent className="p-6 md:p-8">
+                <div className="flex items-center mb-4">
+                  <div className="flex space-x-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                </div>
+                <Quote className="text-cyan/50 w-8 h-8 mb-4" />
+                <p className="text-gray-light text-base md:text-lg mb-6 leading-relaxed">
+                  "Trabalho na construção e meu celular sofre muito. Depois da blindagem líquida, não tenho mais problemas com riscos na tela."
+                </p>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-cyan to-primary rounded-full flex items-center justify-center mr-4">
+                    <span className="text-white font-bold text-lg">C</span>
+                  </div>
+                  <div>
+                    <p className="text-white-pure font-semibold">Carlos Ferreira</p>
+                    <p className="text-cyan text-sm">Motorola Edge 30</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Testemunho 5 */}
+            <Card className="bg-card/80 backdrop-blur-md hover:shadow-2xl hover:shadow-cyan/20 transition-all duration-500 border-2 border-primary/30 hover:border-cyan slide-up">
+              <CardContent className="p-6 md:p-8">
+                <div className="flex items-center mb-4">
+                  <div className="flex space-x-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                </div>
+                <Quote className="text-cyan/50 w-8 h-8 mb-4" />
+                <p className="text-gray-light text-base md:text-lg mb-6 leading-relaxed">
+                  "Fiquei impressionada com a tecnologia! Não dá para ver que tem alguma proteção aplicada, mas funciona perfeitamente."
+                </p>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-cyan to-primary rounded-full flex items-center justify-center mr-4">
+                    <span className="text-white font-bold text-lg">A</span>
+                  </div>
+                  <div>
+                    <p className="text-white-pure font-semibold">Ana Costa</p>
+                    <p className="text-cyan text-sm">iPhone 14</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Testemunho 6 */}
+            <Card className="bg-card/80 backdrop-blur-md hover:shadow-2xl hover:shadow-cyan/20 transition-all duration-500 border-2 border-primary/30 hover:border-cyan slide-up">
+              <CardContent className="p-6 md:p-8">
+                <div className="flex items-center mb-4">
+                  <div className="flex space-x-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                </div>
+                <Quote className="text-cyan/50 w-8 h-8 mb-4" />
+                <p className="text-gray-light text-base md:text-lg mb-6 leading-relaxed">
+                  "Preço justo e resultado excelente. Meu Xiaomi estava com micro riscos que me incomodavam muito. Agora está novinho!"
+                </p>
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-cyan to-primary rounded-full flex items-center justify-center mr-4">
+                    <span className="text-white font-bold text-lg">P</span>
+                  </div>
+                  <div>
+                    <p className="text-white-pure font-semibold">Pedro Oliveira</p>
+                    <p className="text-cyan text-sm">Xiaomi Mi 11</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Information Section */}
       <section
         id="contato"

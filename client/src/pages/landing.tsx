@@ -281,13 +281,11 @@ export default function Landing() {
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-cyan/20 border-2 border-cyan/30 hover:border-cyan transition-all duration-300">
+          <div className="max-w-4xl mx-auto flex justify-center">
+            <div className="relative inline-block rounded-2xl overflow-hidden shadow-2xl shadow-cyan/20 border-2 border-cyan/30 hover:border-cyan transition-all duration-300">
               <video
                 src="https://ztpevfvomkwwjjkzwmwn.supabase.co/storage/v1/object/sign/video/Design%20sem%20nome.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85MDM3NDIwOC0wNzNkLTQ1ZTQtYTQxZi1jYTNjYjU1YzY2YjUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlby9EZXNpZ24gc2VtIG5vbWUubXA0IiwiaWF0IjoxNzQ5Njk2MzA3LCJleHAiOjE3ODEyMzIzMDd9.T_oKpXGNN_N6gDWqH_qc4DBJe6urCQTFhK2SP9a_PNE"
-                width="100%"
-                height="100%"
-                className="absolute inset-0 w-full h-full object-contain bg-black"
+                className="w-full max-w-full h-auto block"
                 autoPlay
                 muted
                 loop

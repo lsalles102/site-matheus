@@ -287,7 +287,7 @@ export default function Landing() {
                 src="https://ztpevfvomkwwjjkzwmwn.supabase.co/storage/v1/object/sign/video/Design%20sem%20nome.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85MDM3NDIwOC0wNzNkLTQ1ZTQtYTQxZi1jYTNjYjU1YzY2YjUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlby9EZXNpZ24gc2VtIG5vbWUubXA0IiwiaWF0IjoxNzQ5Njk2MzA3LCJleHAiOjE3ODEyMzIzMDd9.T_oKpXGNN_N6gDWqH_qc4DBJe6urCQTFhK2SP9a_PNE"
                 width="100%"
                 height="100%"
-                className="absolute inset-0 object-cover"
+                className="absolute inset-0 w-full h-full object-contain bg-black"
                 autoPlay
                 muted
                 loop

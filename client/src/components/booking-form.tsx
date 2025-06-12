@@ -101,7 +101,59 @@ export default function BookingForm() {
     },
   });
 
+  // Função para verificar disponibilidade
+  const checkAvailability = async (date: string, time: string) => {
+    if (!date || !time) return;
+    
+    setAvailabilityStatus({ checking: true, available: null, message: "Verificando disponibilidade..." });
+    
+    try {
+      const response = await fetch(`/api/appointments/check-availability?date=${date}&time=${time}`);
+      const data = await response.json();
+      
+      if (data.available) {
+        setAvailabilityStatus({
+          checking: false,
+          available: true,
+          message: "✓ Horário disponível!"
+        });
+      } else {
+        setAvailabilityStatus({
+          checking: false,
+          available: false,
+          message: "✗ Este horário já está ocupado. Escolha outro horário."
+        });
+      }
+    } catch (error) {
+      setAvailabilityStatus({
+        checking: false,
+        available: false,
+        message: "Erro ao verificar disponibilidade."
+      });
+    }
+  };
+
+  // Verificar disponibilidade quando data ou hora mudarem
+  useEffect(() => {
+    const date = form.watch("appointmentDate");
+    const time = form.watch("appointmentTime");
+    
+    if (date && time) {
+      checkAvailability(date, time);
+    } else {
+      setAvailabilityStatus({ checking: false, available: null, message: "" });
+    }
+  }, [form.watch("appointmentDate"), form.watch("appointmentTime")]);
+
   const onSubmit = (data: BookingFormData) => {
+    if (availabilityStatus.available === false) {
+      toast({
+        title: "Horário indisponível",
+        description: "Por favor, escolha um horário disponível.",
+        variant: "destructive",
+      });
+      return;
+    }
     bookingMutation.mutate(data);
   };
 
@@ -205,6 +257,26 @@ export default function BookingForm() {
                 )}
               </div>
             </div>
+
+            {/* Indicador de Disponibilidade */}
+            {availabilityStatus.message && (
+              <div className={`p-3 rounded-lg flex items-center gap-2 ${
+                availabilityStatus.checking 
+                  ? "bg-blue-50 text-blue-700 border border-blue-200" 
+                  : availabilityStatus.available 
+                    ? "bg-green-50 text-green-700 border border-green-200"
+                    : "bg-red-50 text-red-700 border border-red-200"
+              }`}>
+                {availabilityStatus.checking ? (
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current"></div>
+                ) : availabilityStatus.available ? (
+                  <CheckCircle className="h-4 w-4" />
+                ) : (
+                  <AlertCircle className="h-4 w-4" />
+                )}
+                <span className="text-sm font-medium">{availabilityStatus.message}</span>
+              </div>
+            )}
 
             {/* Marca e Modelo */}
             <div className="grid md:grid-cols-2 gap-6">

@@ -13,9 +13,16 @@ import {
 } from "lucide-react";
 import BookingForm from "@/components/booking-form";
 import WhatsAppButton from "@/components/whatsapp-button";
+import SEOHead from "@/components/seo-head";
+import { getStoreConfig, generateSEOContent } from "@/lib/seo-config";
 
 export default function Landing() {
   const [showBooking, setShowBooking] = useState(false);
+  
+  // Detectar região da loja (pode ser baseado em URL, localStorage, etc.)
+  const regionKey = new URLSearchParams(window.location.search).get('region') || 'sao-paulo';
+  const storeConfig = getStoreConfig(regionKey);
+  const seoContent = generateSEOContent(storeConfig);
 
   const scrollToBooking = () => {
     const bookingSection = document.getElementById("agendamento");
@@ -27,6 +34,14 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-background nano-pattern">
+      <SEOHead
+        title={seoContent.home.title}
+        description={seoContent.home.description}
+        keywords={seoContent.home.keywords}
+        region={storeConfig.region}
+        city={storeConfig.city}
+        businessName={storeConfig.businessName}
+      />
       {/* Header */}
       <header className="bg-card/90 backdrop-blur-md shadow-lg border-b border-primary/20 sticky top-0 z-40 fade-in">
         <div className="container mx-auto px-4 py-2">
@@ -109,15 +124,15 @@ export default function Landing() {
         <div className="absolute inset-0 bg-gradient-to-r from-dark-blue/90 to-transparent"></div>
         <div className="relative container mx-auto px-4">
           <div className="max-w-5xl mx-auto text-center slide-up">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 md:mb-8 leading-tight tracking-tight">
-              Proteja seu celular com{" "}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 md:mb-8 leading-tight tracking-tight">
               <span className="text-cyan glow">
-                tecnologia de blindagem líquida
-              </span>
-            </h2>
+                {storeConfig.businessName}
+              </span>{" "}
+              - Assistência Técnica em {storeConfig.city}
+            </h1>
             <p className="text-lg sm:text-xl md:text-2xl mb-8 md:mb-12 text-gray-light leading-relaxed max-w-3xl mx-auto px-4">
-              Blindagem líquida com carbono e titânio que aumenta a resistência
-              da tela em 15x contra riscos e impactos
+              Especialistas em reparo de celulares e smartphones em {storeConfig.city}, {storeConfig.state}. 
+              Atendimento rápido, confiável e com garantia. Serviços em loja e domicílio.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4">
               <Button
@@ -408,15 +423,14 @@ export default function Landing() {
               </h5>
               <ul className="space-y-4 text-gray-light text-lg">
                 <li className="flex items-center hover:text-cyan transition-colors">
-                  <Phone className="mr-3 w-5 h-5 text-cyan" /> (98) 99181-9204
+                  <Phone className="mr-3 w-5 h-5 text-cyan" /> {storeConfig.phone}
                 </li>
                 <li className="flex items-center hover:text-cyan transition-colors">
                   <Mail className="mr-3 w-5 h-5 text-cyan" />
-                  globaltechdivineia@gmail.com
+                  contato@{storeConfig.businessName.toLowerCase().replace(/\s+/g, '')}.com
                 </li>
                 <li className="flex items-center hover:text-cyan transition-colors">
-                  <MapPin className="mr-3 w-5 h-5 text-cyan" /> Turu, São Luís -
-                  MA
+                  <MapPin className="mr-3 w-5 h-5 text-cyan" /> {storeConfig.address}
                 </li>
               </ul>
             </div>

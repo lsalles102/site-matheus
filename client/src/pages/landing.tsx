@@ -95,14 +95,6 @@ export default function Landing() {
             </nav>
 
             <div className="flex items-center space-x-4">
-              {/* Logo Mobile */}
-              <div className="md:hidden">
-                <img
-                  src="/logo.png"
-                  alt="Logo"
-                  className="h-28 w-auto object-contain -my-4"
-                />
-              </div>
 
               {/* Mobile Menu Button */}
               <button className="md:hidden p-2 text-gray-light hover:text-cyan transition-colors">

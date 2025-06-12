@@ -283,15 +283,17 @@ export default function Landing() {
 
           <div className="max-w-4xl mx-auto">
             <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-cyan/20 border-2 border-cyan/30 hover:border-cyan transition-all duration-300">
-              <iframe
-                src="https://www.youtube.com/embed/P6MdBpepCyQ?autoplay=1&mute=1&loop=1&playlist=P6MdBpepCyQ&controls=0&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&fs=0&disablekb=1"
+              <video
+                src="https://ztpevfvomkwwjjkzwmwn.supabase.co/storage/v1/object/sign/video/Design%20sem%20nome.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85MDM3NDIwOC0wNzNkLTQ1ZTQtYTQxZi1jYTNjYjU1YzY2YjUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlby9EZXNpZ24gc2VtIG5vbWUubXA0IiwiaWF0IjoxNzQ5Njk2MzA3LCJleHAiOjE3ODEyMzIzMDd9.T_oKpXGNN_N6gDWqH_qc4DBJe6urCQTFhK2SP9a_PNE"
                 width="100%"
                 height="100%"
-                className="absolute inset-0"
-                allowFullScreen
-                allow="autoplay; encrypted-media"
+                className="absolute inset-0 object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls={false}
                 title="Demonstração da Blindagem Líquida de Carbono e Titânio"
-                loading="lazy"
               />
             </div>
             

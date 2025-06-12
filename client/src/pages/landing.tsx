@@ -284,11 +284,12 @@ export default function Landing() {
           <div className="max-w-4xl mx-auto">
             <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-cyan/20 border-2 border-cyan/30 hover:border-cyan transition-all duration-300">
               <iframe
-                src="https://vioo.cc/v/4KRm"
+                src="https://www.youtube.com/embed/P6MdBpepCyQ?autoplay=1&mute=1&loop=1&playlist=P6MdBpepCyQ&controls=0&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&fs=0&disablekb=1"
                 width="100%"
                 height="100%"
                 className="absolute inset-0"
                 allowFullScreen
+                allow="autoplay; encrypted-media"
                 title="Demonstração da Blindagem Líquida de Carbono e Titânio"
                 loading="lazy"
               />

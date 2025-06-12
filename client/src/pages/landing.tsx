@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -12,6 +12,7 @@ import {
   Clock,
   Star,
   Quote,
+  Play,
 } from "lucide-react";
 import BookingForm from "@/components/booking-form";
 import WhatsAppButton from "@/components/whatsapp-button";
@@ -20,6 +21,12 @@ import { getStoreConfig, generateSEOContent } from "@/lib/seo-config";
 
 export default function Landing() {
   const [showBooking, setShowBooking] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+  }, []);
 
   // Detectar região da loja (pode ser baseado em URL, localStorage, etc.)
   const regionKey =
@@ -281,18 +288,34 @@ export default function Landing() {
             </p>
           </div>
 
-          <div className="max-w-3xl mx-auto flex justify-center">
-            <div className="relative inline-block rounded-2xl overflow-hidden shadow-2xl shadow-cyan/20 border-2 border-cyan/30 hover:border-cyan transition-all duration-300">
-              <video
-                src="https://ztpevfvomkwwjjkzwmwn.supabase.co/storage/v1/object/sign/video/Design%20sem%20nome.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85MDM3NDIwOC0wNzNkLTQ1ZTQtYTQxZi1jYTNjYjU1YzY2YjUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlby9EZXNpZ24gc2VtIG5vbWUubXA0IiwiaWF0IjoxNzQ5Njk2MzA3LCJleHAiOjE3ODEyMzIzMDd9.T_oKpXGNN_N6gDWqH_qc4DBJe6urCQTFhK2SP9a_PNE"
-                className="w-full max-w-2xl h-auto block"
-                autoPlay
-                muted
-                loop
-                playsInline
-                controls={false}
-                title="Demonstração da Blindagem Líquida de Carbono e Titânio"
-              />
+          <div className="max-w-3xl mx-auto flex justify-center px-4">
+            <div className="relative w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl shadow-cyan/20 border-2 border-cyan/30 hover:border-cyan transition-all duration-300">
+              {!videoError ? (
+                <video
+                  src="https://ztpevfvomkwwjjkzwmwn.supabase.co/storage/v1/object/sign/video/Design%20sem%20nome.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85MDM3NDIwOC0wNzNkLTQ1ZTQtYTQxZi1jYTNjYjU1YzY2YjUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlby9EZXNpZ24gc2VtIG5vbWUubXA0IiwiaWF0IjoxNzQ5Njk2MzA3LCJleHAiOjE3ODEyMzIzMDd9.T_oKpXGNN_N6gDWqH_qc4DBJe6urCQTFhK2SP9a_PNE"
+                  className="w-full h-auto block"
+                  autoPlay={!isMobile}
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  controls={isMobile}
+                  title="Demonstração da Blindagem Líquida de Carbono e Titânio"
+                  onError={() => setVideoError(true)}
+                />
+              ) : (
+                <div className="w-full aspect-video bg-gradient-to-br from-card to-background flex items-center justify-center">
+                  <div className="text-center">
+                    <Play className="w-16 h-16 text-cyan mx-auto mb-4" />
+                    <p className="text-white-pure text-lg font-semibold mb-2">
+                      Demonstração da Blindagem Líquida
+                    </p>
+                    <p className="text-gray-light">
+                      Vídeo temporariamente indisponível
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
             
             <div className="text-center mt-8">

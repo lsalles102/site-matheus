@@ -4,11 +4,11 @@
 
 :root {
   /* Futuristic Clean Tech Theme */
-  --background: hsl(218, 47%, 15%); /* Azul escuro base #1D2D50 */
+  --background: hsl(0, 0%, 0%); /* Preto absoluto */
   --foreground: hsl(0, 0%, 100%); /* Branco puro */
-  --card: hsl(218, 40%, 18%);
+  --card: hsl(0, 0%, 5%); /* Preto com um pouco de cinza */
   --card-foreground: hsl(0, 0%, 100%);
-  --popover: hsl(218, 40%, 18%);
+  --popover: hsl(0, 0%, 5%); /* Preto com um pouco de cinza */
   --popover-foreground: hsl(0, 0%, 100%);
   --primary: hsl(193, 100%, 43%); /* Ciano #00B4D8 */
   --primary-dark: hsl(193, 100%, 35%);
@@ -22,23 +22,23 @@
   --destructive: hsl(0, 84.2%, 60.2%);
   --destructive-foreground: hsl(0, 0%, 100%);
   --border: hsl(215, 20%, 25%);
-  --input: hsl(218, 30%, 22%);
+  --input: hsl(0, 0%, 10%); /* Input com fundo preto */
   --ring: hsl(193, 100%, 43%);
   --radius: 0.75rem;
   --success: hsl(142, 76%, 40%);
   --warning: hsl(38, 92%, 55%);
-  --dark-blue: hsl(218, 47%, 15%);
+  --dark-blue: hsl(0, 0%, 0%); /* Preto */
   --cyan: hsl(193, 100%, 43%);
   --white-pure: hsl(0, 0%, 100%);
   --gray-light: hsl(215, 20%, 85%);
 }
 
 .dark {
-  --background: hsl(240, 10%, 3.9%);
+  --background: hsl(0, 0%, 0%); /* Preto absoluto */
   --foreground: hsl(0, 0%, 98%);
-  --card: hsl(240, 10%, 3.9%);
+  --card: hsl(0, 0%, 5%); /* Preto com um pouco de cinza */
   --card-foreground: hsl(0, 0%, 98%);
-  --popover: hsl(240, 10%, 3.9%);
+  --popover: hsl(0, 0%, 5%); /* Preto com um pouco de cinza */
   --popover-foreground: hsl(0, 0%, 98%);
   --primary: hsl(207, 90%, 54%);
   --primary-dark: hsl(207, 90%, 44%);
@@ -52,13 +52,13 @@
   --destructive: hsl(0, 62.8%, 30.6%);
   --destructive-foreground: hsl(0, 0%, 98%);
   --border: hsl(240, 3.7%, 15.9%);
-  --input: hsl(240, 3.7%, 15.9%);
+  --input: hsl(0, 0%, 10%); /* Input com fundo preto */
   --ring: hsl(240, 4.9%, 83.9%);
   --success: hsl(142, 76%, 36%);
   --warning: hsl(38, 92%, 50%);
   --dark-gray: hsl(0, 0%, 98%);
   --medium-gray: hsl(210, 8%, 65%);
-  --light-bg: hsl(240, 10%, 3.9%);
+  --light-bg: hsl(0, 0%, 0%); /* Fundo preto */
 }
 
 @layer base {

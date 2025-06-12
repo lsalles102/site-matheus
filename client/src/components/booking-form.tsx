@@ -80,6 +80,7 @@ export default function BookingForm() {
     },
     onSuccess: (data) => {
       setShowSuccessModal(true);
+      setWhatsappLink(data.whatsappLink || "");
       form.reset();
       toast({
         title: "Agendamento confirmado!",
@@ -341,11 +342,25 @@ export default function BookingForm() {
             </DialogTitle>
           </DialogHeader>
           <p className="text-gray-600 mb-6">
-            Você receberá uma confirmação via WhatsApp em breve com todos os detalhes do seu agendamento.
+            Clique no botão abaixo para receber a confirmação via WhatsApp com todos os detalhes do seu agendamento.
           </p>
-          <Button onClick={() => setShowSuccessModal(false)} className="bg-primary hover:bg-primary-dark">
-            Fechar
-          </Button>
+          <div className="space-y-3">
+            {whatsappLink && (
+              <Button
+                onClick={() => window.open(whatsappLink, '_blank')}
+                className="w-full bg-green-600 hover:bg-green-700 text-white py-3 font-semibold"
+              >
+                📱 Confirmar via WhatsApp
+              </Button>
+            )}
+            <Button 
+              onClick={() => setShowSuccessModal(false)} 
+              variant="outline"
+              className="w-full"
+            >
+              Fechar
+            </Button>
+          </div>
         </DialogContent>
       </Dialog>
     </>

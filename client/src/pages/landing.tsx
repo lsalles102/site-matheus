@@ -277,7 +277,7 @@ export default function Landing() {
               Veja a Blindagem em Ação
             </h3>
             <p className="text-lg sm:text-xl text-gray-light leading-relaxed px-4 max-w-3xl mx-auto">
-              Demonstração completa de como aplicamos a blindagem líquida de carbono e titânio no seu dispositivo
+              Demonstração de como funciona a blindagem líquida de carbono e titânio no seu dispositivo
             </p>
           </div>
 
@@ -297,7 +297,6 @@ export default function Landing() {
             
             <div className="text-center mt-8">
               <p className="text-gray-light text-base md:text-lg leading-relaxed">
-                Processo completo de aplicação da blindagem líquida em alta definição
               </p>
             </div>
           </div>

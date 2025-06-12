@@ -4,10 +4,16 @@ import { useAdminAuth } from "@/hooks/useAdminAuth";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 import AdminTable from "@/components/admin-table";
+import SEOHead from "@/components/seo-head";
+import { getStoreConfig, generateSEOContent } from "@/lib/seo-config";
 
 export default function Admin() {
   const { admin, isLoading, isAuthenticated, logout } = useAdminAuth();
   const [, navigate] = useLocation();
+  
+  const regionKey = new URLSearchParams(window.location.search).get('region') || 'sao-paulo';
+  const storeConfig = getStoreConfig(regionKey);
+  const seoContent = generateSEOContent(storeConfig);
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -29,11 +35,19 @@ export default function Admin() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <SEOHead
+        title={seoContent.admin.title}
+        description={seoContent.admin.description}
+        keywords={seoContent.admin.keywords}
+        region={storeConfig.region}
+        city={storeConfig.city}
+        businessName={storeConfig.businessName}
+      />
       <header className="bg-white dark:bg-gray-800 shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <h1 className="text-xl font-semibold text-gray-900 dark:text-white">
-              Painel Administrativo - Global Tech
+              Painel Administrativo - {storeConfig.businessName}
             </h1>
             <div className="flex items-center space-x-4">
               <span className="text-sm text-gray-600 dark:text-gray-400">

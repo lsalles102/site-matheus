@@ -174,7 +174,7 @@ export default function BookingForm() {
                   type="date"
                   min={new Date().toISOString().split('T')[0]}
                   {...form.register("appointmentDate")}
-                  className="focus:ring-2 focus:ring-primary"
+                  className="focus:ring-2 focus:ring-primary text-white bg-gray-800 border-gray-600 [&::-webkit-calendar-picker-indicator]:invert [&::-webkit-calendar-picker-indicator]:brightness-200"
                 />
                 {form.formState.errors.appointmentDate && (
                   <p className="text-sm text-red-600">{form.formState.errors.appointmentDate.message}</p>

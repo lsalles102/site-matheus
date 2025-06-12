@@ -18,9 +18,10 @@ import { getStoreConfig, generateSEOContent } from "@/lib/seo-config";
 
 export default function Landing() {
   const [showBooking, setShowBooking] = useState(false);
-  
+
   // Detectar região da loja (pode ser baseado em URL, localStorage, etc.)
-  const regionKey = new URLSearchParams(window.location.search).get('region') || 'sao-luis';
+  const regionKey =
+    new URLSearchParams(window.location.search).get("region") || "sao-luis";
   const storeConfig = getStoreConfig(regionKey);
   const seoContent = generateSEOContent(storeConfig);
 
@@ -55,8 +56,7 @@ export default function Landing() {
             </div>
 
             {/* Spacer for layout balance */}
-            <div className="hidden md:flex items-center justify-center flex-1 mx-8">
-            </div>
+            <div className="hidden md:flex items-center justify-center flex-1 mx-8"></div>
 
             <nav className="hidden md:flex space-x-8">
               <a
@@ -126,13 +126,12 @@ export default function Landing() {
           <div className="max-w-5xl mx-auto text-center slide-up">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 md:mb-8 leading-tight tracking-tight">
               <span className="text-cyan glow">
-                {storeConfig.businessName}
-              </span>{" "}
-              - Assistência Técnica em {storeConfig.city}
+                Conheça a blindagem liquida de carbono e tintânio
+              </span>
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl mb-8 md:mb-12 text-gray-light leading-relaxed max-w-3xl mx-auto px-4">
-              Especialistas em reparo de celulares e smartphones em {storeConfig.city}, {storeConfig.state}. 
-              Atendimento rápido, confiável e com garantia. Serviços em loja e domicílio.
+              Blindagem liquida de carbono e titânio que aumenta a resistêcia da
+              tela em 15x contra riscos e impactos!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center px-4">
               <Button
@@ -345,7 +344,7 @@ export default function Landing() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Localização Global Tech - R. Ten. Calixto, 100 - Turu, São Luís - MA"
+                title="Localização conheça ablindagem liquida de carbono e tintanio - R. Ten. Calixto, 100 - Turu, São Luís - MA"
               />
             </div>
           </div>
@@ -423,14 +422,18 @@ export default function Landing() {
               </h5>
               <ul className="space-y-4 text-gray-light text-lg">
                 <li className="flex items-center hover:text-cyan transition-colors">
-                  <Phone className="mr-3 w-5 h-5 text-cyan" /> {storeConfig.phone}
+                  <Phone className="mr-3 w-5 h-5 text-cyan" />{" "}
+                  {storeConfig.phone}
                 </li>
                 <li className="flex items-center hover:text-cyan transition-colors">
                   <Mail className="mr-3 w-5 h-5 text-cyan" />
-                  contato@{storeConfig.businessName.toLowerCase().replace(/\s+/g, '')}.com
+                  contato@
+                  {storeConfig.businessName.toLowerCase().replace(/\s+/g, "")}
+                  .com
                 </li>
                 <li className="flex items-center hover:text-cyan transition-colors">
-                  <MapPin className="mr-3 w-5 h-5 text-cyan" /> {storeConfig.address}
+                  <MapPin className="mr-3 w-5 h-5 text-cyan" />{" "}
+                  {storeConfig.address}
                 </li>
               </ul>
             </div>
@@ -461,7 +464,8 @@ export default function Landing() {
 
           <div className="border-t border-cyan/30 mt-16 pt-8 text-center text-gray-light">
             <p className="text-lg">
-              &copy; 2024 Global Tech. Todos os direitos reservados.
+              &copy; 2024 conheça ablindagem liquida de carbono e tintanio.
+              Todos os direitos reservados.
             </p>
           </div>
         </div>

@@ -34,6 +34,7 @@ export interface IStorage {
   updateAppointment(id: number, data: Partial<Appointment>): Promise<Appointment | undefined>;
   deleteAppointment(id: number): Promise<boolean>;
   markWhatsAppSent(id: number): Promise<void>;
+  checkAvailability(date: string, time: string): Promise<boolean>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -166,6 +167,27 @@ export class DatabaseStorage implements IStorage {
         .where(eq(appointments.id, id));
     } catch (error) {
       console.error('Error marking WhatsApp sent:', error);
+      throw error;
+    }
+  }
+
+  async checkAvailability(date: string, time: string): Promise<boolean> {
+    try {
+      const existingAppointments = await db
+        .select()
+        .from(appointments)
+        .where(
+          and(
+            eq(appointments.appointmentDate, date),
+            eq(appointments.appointmentTime, time),
+            eq(appointments.status, "confirmado")
+          )
+        );
+      
+      // Se não há agendamentos no mesmo horário, está disponível
+      return existingAppointments.length === 0;
+    } catch (error) {
+      console.error('Error checking availability:', error);
       throw error;
     }
   }

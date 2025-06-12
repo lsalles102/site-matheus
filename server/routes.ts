@@ -35,10 +35,47 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Check availability endpoint
+  app.get("/api/appointments/check-availability", async (req, res) => {
+    try {
+      const { date, time } = req.query;
+      
+      if (!date || !time) {
+        return res.status(400).json({ 
+          message: "Data e horário são obrigatórios",
+          available: false
+        });
+      }
+      
+      const isAvailable = await storage.checkAvailability(date as string, time as string);
+      res.json({ available: isAvailable });
+    } catch (error) {
+      console.error("Error checking availability:", error);
+      res.status(500).json({ 
+        message: "Erro ao verificar disponibilidade",
+        available: false
+      });
+    }
+  });
+
   // Public booking endpoint
   app.post("/api/appointments", async (req, res) => {
     try {
       const validatedData = insertAppointmentSchema.parse(req.body);
+      
+      // Verificar disponibilidade antes de criar agendamento
+      const isAvailable = await storage.checkAvailability(
+        validatedData.appointmentDate, 
+        validatedData.appointmentTime
+      );
+      
+      if (!isAvailable) {
+        return res.status(409).json({ 
+          message: "Este horário já está ocupado. Por favor, escolha outro horário.",
+          available: false
+        });
+      }
+      
       const appointment = await storage.createAppointment(validatedData);
       
       // Gerar link do WhatsApp com mensagem de confirmação

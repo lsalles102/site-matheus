@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { setupAuth, isAuthenticated } from "./replitAuth";
 import { insertAppointmentSchema, adminLoginSchema } from "@shared/schema";
 import { z } from "zod";
+import { WhatsAppService } from "./whatsappService";
 
 
 interface AuthenticatedRequest extends Request {
@@ -40,16 +41,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertAppointmentSchema.parse(req.body);
       const appointment = await storage.createAppointment(validatedData);
       
-      // Send WhatsApp confirmation (in production, integrate with WhatsApp API)
-      const whatsappMessage = `Olá ${appointment.name}, seu agendamento foi confirmado para ${appointment.appointmentDate} às ${appointment.appointmentTime}. Obrigado pela confiança na Global Tech!`;
-      console.log("WhatsApp message to send:", whatsappMessage);
+      // Gerar link do WhatsApp com mensagem de confirmação
+      const serviceText = appointment.serviceType === 'basica' ? 'Manutenção Básica' : 'Manutenção Premium';
+      const whatsappResult = await WhatsAppService.sendConfirmationMessage({
+        customerPhone: appointment.phone,
+        customerName: appointment.name,
+        service: serviceText,
+        date: appointment.appointmentDate,
+        time: appointment.appointmentTime,
+        brand: appointment.deviceBrand
+      });
       
-      await storage.markWhatsAppSent(appointment.id);
+      if (whatsappResult.success) {
+        await storage.markWhatsAppSent(appointment.id);
+        console.log(`WhatsApp link gerado: ${whatsappResult.whatsappLink}`);
+      }
       
       res.json({ 
         success: true, 
         appointment,
-        message: "Agendamento criado com sucesso! Você receberá uma confirmação via WhatsApp em breve."
+        whatsappLink: whatsappResult.whatsappLink,
+        message: "Agendamento criado com sucesso! Link do WhatsApp gerado para confirmação."
       });
     } catch (error) {
       if (error instanceof z.ZodError) {

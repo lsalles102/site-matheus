@@ -51,6 +51,7 @@ const deviceBrands = [
 
 export default function BookingForm() {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [whatsappLink, setWhatsappLink] = useState<string>("");
   const { toast } = useToast();
 
   const form = useForm<BookingFormData>({

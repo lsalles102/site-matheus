@@ -284,7 +284,7 @@ export default function Landing() {
             <div className="relative w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl shadow-cyan/20 border-2 border-cyan/30 hover:border-cyan transition-all duration-300">
               {!videoError ? (
                 <video
-                  src="https://ztpevfvomkwwjjkzwmwn.supabase.co/storage/v1/object/sign/video/Design%20sem%20nome.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8wNTRiZDIxMy1hMGVkLTRkZGUtYjhjZi1kYjFlMTFiNzE5OWQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlby9EZXNpZ24gc2VtIG5vbWUubXA0IiwiaWF0IjoxNzUwNzgzMTIyLCJleHAiOjE3ODIzMTkxMjJ9.gu4bKQu4k1uKASuumHvrU80ziFzyzR983rf8sa1rHNI"
+                  src="https://ztpevfvomkwwjjkzwmwn.supabase.co/storage/v1/object/sign/video/Design%20sem%20nome.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV8xNTI4Y2Y0MC05OTUzLTRlODUtYTQxMS00MzRmZWEzZWM1NjEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJ2aWRlby9EZXNpZ24gc2VtIG5vbWUubXA0IiwiaWF0IjoxNzUxNzU4NDU2LCJleHAiOjE3ODMyOTQ0NTZ9.6b0Cv1sNXYKN3YUOfEoBB8s9YYDHyqohnapS4wevnqw"
                   className="w-full h-auto block"
                   autoPlay={!isMobile}
                   muted
